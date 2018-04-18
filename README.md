@@ -8,10 +8,11 @@ $ npm i || cnpm i
 
 ### start
 ```bash
-$ npm start
+$ npm run dev
 ```
 
 ###build
 ```bash
-$ npm run build
+$ mac: npm run build:osx
+$ win: npm run build:win
 ```

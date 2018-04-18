@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zyxpz/fruits.git"
+  },
   "scripts": {
-    "start": "webpack-dev-server --devtool eval --progress --colors --content-base build --history-api-fallback",
-    "build": "webpack --progress --colors",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build --history-api-fallback",
+    "build:osx": "webpack --progress --colors && mkdir -p dist/${npm_package_name}/${npm_package_version} && mv dist/*.* dist/${npm_package_name}/${npm_package_version}/",
+    "build:win": "",
     "lint": "eslint ./src"
   },
-  "author": "Monroe",
+  "author": "MonroeC",
   "license": "ISC",
   "dependencies": {
     "antd-mobile": "^1.6.0",
