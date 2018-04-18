@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const localIp = (() => {
   let ips = [];
   let os = require('os');
@@ -47,13 +48,12 @@ const config = {
       }
     },
   },
-  resolve: {// 区分 web & native 组件加载 antd-mobile 1.0.x
-		mainFiles: ['index.web', 'index'],
-		modules: [path.resolve(process.cwd(), 'src'), 'node_modules'],
-		extensions: ['.web.js', '.js', '.json'],
-		alias: {
-		}
-	},
+  resolve: { // 区分 web & native 组件加载 antd-mobile 1.0.x
+    mainFiles: ['index.web', 'index'],
+    modules: [path.resolve(process.cwd(), 'src'), 'node_modules'],
+    extensions: ['.web.js', '.js', '.json'],
+    alias: {}
+  },
   module: {
     loaders: [{
         test: /\.js?$/,
@@ -70,15 +70,24 @@ const config = {
       },
       { //css
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader']
+        })
       },
       { //scss
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
       },
       { //less
         test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader']
+        })
       }
     ]
   },
@@ -90,7 +99,8 @@ const config = {
     // 启动项目自启页面
     new OpenBrowserPlugin({
       url: 'http://localhost:8181/'
-    })
+    }),
+    new ExtractTextPlugin('[name].css')
   ]
 };
 
