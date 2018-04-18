@@ -18,6 +18,7 @@ const localIp = (() => {
   // return ips[0] || 'localhost';
   return 'localhost';
 })();
+
 const config = {
   entry: './src/index.js',
   output: {
@@ -88,7 +89,14 @@ const config = {
           fallback: 'style-loader',
           use: ['css-loader', 'less-loader']
         })
-      }
+      },
+      {
+				test: /\.(png|jpg|gif|eot|ttf|woff|woff2|svg)$/,
+				loader: 'url-loader',
+				options: {
+					limit: 10000
+				}
+			},
     ]
   },
   plugins: [
@@ -101,11 +109,21 @@ const config = {
       url: 'http://localhost:8181/'
     }),
     new ExtractTextPlugin('[name].css')
+    
   ]
 };
 
+if (process.env.NODE_ENV === 'prod') {
+  // 生成环境 代码压缩
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }));
+}
+
 config.externals = {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
-  },
-  module.exports = config;
+  'react': 'React',
+  'react-dom': 'ReactDOM'
+};
+module.exports = config;

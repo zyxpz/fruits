@@ -8,9 +8,9 @@
     "url": "git@github.com:zyxpz/fruits.git"
   },
   "scripts": {
-    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build --history-api-fallback",
-    "build:osx": "webpack --progress --colors && mkdir -p dist/${npm_package_name}/${npm_package_version} && mv dist/*.* dist/${npm_package_name}/${npm_package_version}/",
-    "build:win": "",
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --devtool eval --progress --colors --content-base build --history-api-fallback",
+    "build:osx": "cross-env NODE_ENV=prod webpack --progress --colors && mkdir -p dist/${npm_package_name}/${npm_package_version} && mv dist/*.* dist/${npm_package_name}/${npm_package_version}/",
+    "build:win": "cross-env NODE_ENV=prod webpack --progress --colors",
     "lint": "eslint ./src"
   },
   "author": "MonroeC",
