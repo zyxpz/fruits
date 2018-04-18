@@ -1,6 +1,7 @@
 import API_ROOT from '../constants/apiRoot';
 import { DEV_WITH_PHP } from '../constants/constants'
- 
+import { Toast } from 'antd-mobile';
+
 let  ajax = (options) => {
     let xhr = new XMLHttpRequest();
     let url = options.url;
@@ -9,10 +10,15 @@ let  ajax = (options) => {
     let error_cb = options.error;
     let uploadProgress = options.uploadProgress;
     let method = options.type || 'GET';
+    let noLoading = options.noLoading;
+    
     method = method.toUpperCase(); //默认转化为大写
     if (!url) {
         console.error('请求地址不存在');
     }
+    !noLoading && Toast.hide();// hack
+    // !noLoading && Toasts.hide();// hack
+    // !noLoading && Toast.loading(null, 0);
 	/**
 	 * 因为json-server是rest的接口；本地测试做个判断
 	 */

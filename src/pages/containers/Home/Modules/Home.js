@@ -23,7 +23,6 @@ class Container extends Component {
     }
 }
 function mapStateToProps(state) {
-    console.log(state, 6);
     return {
         home: state.home
     }

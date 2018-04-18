@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import "./css/reset.scss";
 import "./css/ui.scss";
 import "./css/antd-reset.scss";
+import "./pages/utils/global"
 
 
 //redux
@@ -29,7 +30,6 @@ const store = createStoreWithMiddleware(reducers);
 //路由生成规则, 与 redux 结合.
 const history = syncHistoryWithStore(hashHistory, store);
 
-console.log(routeConfig, 7);
 class App extends React.Component {
     render() { 
         return (

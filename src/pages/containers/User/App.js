@@ -7,5 +7,14 @@ export const userConfig = [
             });
         },
         // onEnter: redirectToLogin
+    },
+    {
+        path: '/user/coupon',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('./Modules/Coupon').default);
+            });
+        },
+        // onEnter: redirectToLogin
     }
 ]; 

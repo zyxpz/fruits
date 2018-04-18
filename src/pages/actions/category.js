@@ -4,8 +4,9 @@
  */
 export { request } from './_common/request';
 import * as types from '../constants/actions/category';
-export function countAdd() {
+export function categoryChange(id) {
     return {
-        type: types.HOME_COUNT_ADD
+        type: types.CATEGORY_MAIN_CHANGE,
+        id
     }
 }
