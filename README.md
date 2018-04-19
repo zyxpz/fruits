@@ -11,7 +11,7 @@ $ npm i || cnpm i
 $ npm run dev
 ```
 
-###build
+### build
 ```bash
 $ mac: npm run build:osx
 $ win: npm run build:win
