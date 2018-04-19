@@ -92,7 +92,7 @@ const config = {
       },
       {
 				test: /\.(png|jpg|gif|eot|ttf|woff|woff2|svg)$/,
-				loader: 'url-loader',
+				loader: 'svg-sprite-loader',
 				options: {
 					limit: 10000
 				}
