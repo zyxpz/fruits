@@ -25,7 +25,6 @@ class Container extends Component {
 			param: param,
 			ajaxType: 'GET',
 			onSuccess: (res) => {
-				Toast.info(res.msg, 1);
 			},
 			onError: (res) => {
 				Toast.info(res.msg, 1);
@@ -34,13 +33,14 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		const { balance: { nickname, balance }, actions } = this.props;
+		const { balance: { nickname, balance }, actions, location } = this.props;
+		const { pathname } = location;
 		return (
 			<div>
 				<Header />
 				<Info nickname={nickname} balance={balance}/>
 				<Recharge actions={actions}/>
-				<Footer />
+				<Footer pathname={pathname}/>
 			</div>
 		)
 	}

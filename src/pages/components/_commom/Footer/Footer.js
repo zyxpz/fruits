@@ -1,6 +1,7 @@
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import classnames from 'classnames';
 const list = [
 	{
 		name: "首页",
@@ -25,6 +26,7 @@ const list = [
 ];
 class Footer extends Component { // 不用Pure
 	render() {
+		const { pathname } = this.props;
 		return (
 			<div>
 				<div style={{ height: 95 }} />
@@ -40,7 +42,11 @@ class Footer extends Component { // 不用Pure
 									to={route}
 									onClick={onClick}
 									activeClassName={`g-orange`}
-									className="g-flex g-fd-c g-col"
+									className={
+										classnames(
+											"g-flex g-fd-c g-col",
+											{"g-orange": (pathname == "/user/balance" || pathname == "/user/integral" || pathname == "/user/coupon") && route == "/user"}
+										)}
 								>
 									<i className={`iconfont ${icon} g-fs-36`} style={{ paddingTop: 5 }}/>
 									<div className="g-fs-22">{name}</div>

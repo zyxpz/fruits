@@ -24,7 +24,6 @@ class Container extends Component {
 			param: param,
 			ajaxType: 'GET',
 			onSuccess: (res) => {
-				Toast.info(res.msg, 1);
 			},
 			onError: (res) => {
 				Toast.info(res.msg, 1);
@@ -33,13 +32,14 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		const { integral: { integral, list }, actions } = this.props;
+		const { integral: { integral, list }, actions, location } = this.props;
+		const { pathname } = location;
 		return (
 			<div>
 				<Header />
 				<Info integral={integral}/>
 				<List list={list}/>
-				<Footer />
+				<Footer pathname={pathname}/>
 			</div>
 		)
 	}

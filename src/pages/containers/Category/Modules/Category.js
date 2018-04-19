@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as types from '../../../constants/actions/category';
+import { Toast } from 'antd-mobile';
+
 
 //redux
 import { bindActionCreators } from 'redux';
@@ -24,10 +26,9 @@ class Container extends Component {
 				param: param,
 				ajaxType: 'GET',
 				onSuccess: (res) => {
-					console.log("true");
 				},
 				onError: (res) => {
-					console.log("error");
+					Toast.info(res.msg, 1);
 				}
 			};
 			this.props.actions.request(url, params, {});
