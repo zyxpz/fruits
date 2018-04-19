@@ -208,4 +208,34 @@
 .am-list-item .am-list-line .am-list-content {
 	font-size: 26px !important;
 }
-  
+.my-radio .am-radio {
+  padding: 0.05rem;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  margin-right: 0.2rem;
+  margin-left: 1em;
+}
+.am-radio.am-radio-checked .am-radio-inner:after {
+	position: absolute;
+    top: 3px;
+    right: 5px;
+    z-index: 999;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    content: '';
+	background: #56c16d;
+}
+.am-radio-inner:after {
+    position: absolute;
+    display: none;
+    top: 5px;
+    right: 5px;
+    z-index: 999;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 100% !important;
+    content: '';
+	background: #56c16d !important;
+	border: none !important;
+}

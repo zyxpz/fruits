@@ -1,20 +1,20 @@
 import * as types from '../../constants/actions/user';
 const initialState = {
-    list: []
+    nickname: "",
+    balance: "0"
 };
-export default function coupon (state = initialState, action={}) {
+export default function balance (state = initialState, action={}) {
     switch(action.type) {
-        case types.USER_COUPON_GET + '_ON':
+        case types.USER_BALANCE_MAIN_GET + '_ON':
             state = {
                 ...state,
             }
             return state;
-        case types.USER_COUPON_GET + '_SUCCESS':
+        case types.USER_BALANCE_MAIN_GET + '_SUCCESS':
             state = {
                 ...state,
-                list: [
-                    ...action.data.data
-                ]
+                nickname: action.data.data.nickname,
+                balance: action.data.data.remain
             }
             return state;
         default:

@@ -1,20 +1,20 @@
 import * as types from '../../constants/actions/user';
 const initialState = {
+    integral: "0",
     list: []
 };
-export default function coupon (state = initialState, action={}) {
+export default function integral (state = initialState, action={}) {
     switch(action.type) {
-        case types.USER_COUPON_GET + '_ON':
+        case types.USER_INTEGRAL_MAIN_GET + '_ON':
             state = {
                 ...state,
             }
             return state;
-        case types.USER_COUPON_GET + '_SUCCESS':
+        case types.USER_INTEGRAL_MAIN_GET + '_SUCCESS':
             state = {
                 ...state,
-                list: [
-                    ...action.data.data
-                ]
+                integral: action.data.data.integral,
+                list: action.data.data.list
             }
             return state;
         default:

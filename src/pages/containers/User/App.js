@@ -16,5 +16,23 @@ export const userConfig = [
             });
         },
         // onEnter: redirectToLogin
+    },
+    {
+        path: '/user/balance',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('./Modules/Balance').default);
+            });
+        },
+        // onEnter: redirectToLogin
+    },
+    {
+        path: '/user/integral',
+        getComponent: (nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('./Modules/Integral').default);
+            });
+        },
+        // onEnter: redirectToLogin
     }
 ]; 

@@ -9,15 +9,16 @@ import * as creators from '../../../actions/user';
 import { connect } from 'react-redux';
 
 // 业务组件
-import Header from "../../../components/User/Coupon/Header";
-import List from "../../../components/User/Coupon/List";
+import Header from "../../../components/User/Integral/Header";
+import Info from "../../../components/User/Integral/Info";
+import List from "../../../components/User/Integral/List";
 import Footer from "../../../components/_commom/Footer/Footer";
 class Container extends Component {
 	constructor(props) {
 		super(props);
 	}
 	componentDidMount() {
-		let url = types.USER_COUPON_GET;
+		let url = types.USER_INTEGRAL_MAIN_GET;
 		let param = {};
 		let params = {
 			param: param,
@@ -32,11 +33,11 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		const { coupon, actions } = this.props;
-		const { list } = coupon;
+		const { integral: { integral, list }, actions } = this.props;
 		return (
 			<div>
 				<Header />
+				<Info integral={integral}/>
 				<List list={list}/>
 				<Footer />
 			</div>
@@ -45,7 +46,7 @@ class Container extends Component {
 }
 function mapStateToProps(state) {
 	return {
-		coupon: state.coupon
+		integral: state.integral
 	}
 }
 

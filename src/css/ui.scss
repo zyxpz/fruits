@@ -330,6 +330,15 @@
 	right: 0;
 	// margin: 0 auto;
 }
+.g-fixed-content-top { // 无动画 底部弹出
+	position: fixed;
+	width: 100%;
+	z-index: 8;
+	background: white;
+	top: 0;
+	left: 0;
+	right: 0;
+}
 .g-fixed { //默认 有动画 下到上
 	position: fixed;
 	width: 100%;
