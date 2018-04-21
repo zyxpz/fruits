@@ -4,6 +4,7 @@ import * as types from '../../../constants/actions/category';
 import { Toast } from 'antd-mobile';
 import { Link } from 'react-router';
 import Stepper from "../../../components/_commom/Stepper/Stepper";
+import Item from './Item';
 class RightList extends Component {
 	constructor(props) {
 		super(props);
@@ -37,8 +38,9 @@ class RightList extends Component {
 		};
 		nextprops.actions.request(url, params, {});
 	}
+	
 	render() {
-		const { right, current_id, firstData, category_name } = this.props;
+		const { right, current_id, firstData, category_name, actions } = this.props;
 		const list = right[current_id] ? right[current_id].list : firstData;
 		return (
 			<div 
@@ -56,41 +58,11 @@ class RightList extends Component {
 								<div className="g-pd g-tc">暂无数据！</div>
 								:
 								list.map((item, index) => {
-									const {
-										id,
-										goods_name,
-										goods_price,
-										goods_pic,
-										specification,
-										goods_count,
-										stock,
-										month_sale
-									} = item;
 									return (
-										<Link 
-											key={index}
-											className="g-bb g-b-r g-pd g-tc g-flex g-bb"
-											data-id={id}
-											to={`/goods/detail/${id}`}
-										>
-											<div style={{ border: `solid 1px #ececec`, width: 140, height: 140 }}>
-												<img className="g-img-140" src={goods_pic} alt=""/>
-											</div>
-											<div className="g-col-2 g-lh-44 g-pd-l g-tl">
-												<div className="g-black g-fs-30 g-twoline">{goods_name}</div>
-												<div className="g-gray g-fs-24">{specification}</div>
-												<div className="g-flex g-jc-sb">
-													<div className="g-pink">￥<span className="g-fs-30">{goods_price}</span></div>
-													<div>库存：<span className="g-pink">{stock}</span></div>
-												</div>
-												<div className="g-flex g-jc-sb g-fw-w">
-													<div>已售: <span className="g-green">{month_sale}</span> 份</div>
-													<Stepper 
-														max={stock}
-													/>
-												</div>
-											</div>
-										</Link>
+										<Item
+											actions={actions}
+											itemData={item}
+										/>
 									);
 								})
 						}
