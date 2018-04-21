@@ -1,2 +1,1 @@
-export const HOME_COUNT_ADD = 'HOME_COUNT_ADD';
-export const HOME_COUNT_REDUCE = 'HOME_COUNT_REDUCE';
+export const CART_MAIN_GET = 'CART_MAIN_GET';

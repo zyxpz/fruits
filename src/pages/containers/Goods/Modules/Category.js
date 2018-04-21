@@ -24,6 +24,7 @@ class Container extends Component {
 				param: param,
 				ajaxType: 'GET',
 				onSuccess: (res) => {
+					Toast.info(res.msg, 1);
 				},
 				onError: (res) => {
 					Toast.info(res.msg, 1);

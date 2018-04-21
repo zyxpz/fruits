@@ -2,6 +2,6 @@ const api = {
 	/**
 	 *加法
 	 */
-	'HOME_COUNT_ADD': '/api/test.json',
+	'CART_MAIN_GET': '/api/shopcar/car.json',
 };
 export default api;
