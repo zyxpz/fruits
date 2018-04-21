@@ -16,5 +16,14 @@ export const cartConfig = [
 			});
 		},
 		// onEnter: redirectToLogin
+	},
+	{
+		path: '/cart/settlement/address',
+		getComponent: (nextState, cb) => {
+			require.ensure([], (require) => {
+				cb(null, require('./Modules/Address').default);
+			});
+		},
+		// onEnter: redirectToLogin
 	}
 ]; 
