@@ -8,7 +8,7 @@ import * as types from '../../../constants/actions/cart';
 import { Toast } from 'antd-mobile';
 // 业务组件
 import Header from "../../../components/_commom/Header/Header";
-import Address from "../../../components/Cart/Settlement/Address";
+import List from "../../../components/Cart/Address/List";
 
 import Footer from "../../../components/_commom/Footer/Footer";
 
@@ -17,7 +17,7 @@ class Container extends Component {
 		super(props);
 	}
 	componentDidMount() {
-		let url = types.CART_SETTLEMENT_MAIN_GET;
+		let url = types.CART_ADDRESS_MAIN_GET;
 		let param = {};
 		let params = {
 			param: param,
@@ -32,13 +32,16 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		// const { cart, actions, dispatch } = this.props;
+		const { list } = this.props.address;
 		return (
 			<div className="g-bg-white">
 				<Header
-					nickname="结算"
+					nickname="管理收货地址"
 				/>
-				<Address />
+				<List
+					list={list}
+					actions={this.props.actions}
+				/>
 				<Footer />
 			</div>
 		);
@@ -46,7 +49,7 @@ class Container extends Component {
 }
 function mapStateToProps(state) {
 	return {
-		settlement: state.settlement
+		address: state.address
 	};
 }
 

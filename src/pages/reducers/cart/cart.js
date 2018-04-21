@@ -14,7 +14,7 @@ const initChangeDataFun = (itemObj) => {
 	}
 	total_amount = total_amount.toFixed(2);
 	return { total_amount };
-}; 
+};
 const initDeleteFun = (itemObj, itemArr, id) => {
 	itemArr = itemArr.filter((val) => {
 		return val != id;
@@ -74,7 +74,7 @@ export default function cart(state = initialState, action = {}) {
 				total: action.data.data.total,
 				itemObj: itemObj,
 				itemArr: items.itemArr,
-				is_all_selected: 1, 
+				is_all_selected: 1,
 				select_str: select_str
 			};
 			return state;
@@ -85,7 +85,7 @@ export default function cart(state = initialState, action = {}) {
 				...state.itemObj,
 				[id]: {
 					...state.itemObj[id],
-					goods_count: goods_count 
+					goods_count: goods_count
 				}
 			}).total_amount;
 			state = {
@@ -94,7 +94,7 @@ export default function cart(state = initialState, action = {}) {
 					...state.itemObj,
 					[id]: {
 						...state.itemObj[id],
-						goods_count: goods_count 
+						goods_count: goods_count
 					}
 				},
 				total: total_amount
@@ -111,13 +111,13 @@ export default function cart(state = initialState, action = {}) {
 				total: total_amount
 			};
 			return state;
-		case types.CART_SELECT_CHANGE: 
+		case types.CART_SELECT_CHANGE:
 			let select_type = action.select_type;
 			let select_id = action.select_id;
-			
-			if (select_type == 'all' ) {
+
+			if (select_type == 'all') {
 				select_items = initSelectAllFun(state.itemObj, !state.is_all_selected);
-				total_amount =  initChangeDataFun(select_items).total_amount;
+				total_amount = initChangeDataFun(select_items).total_amount;
 				state = {
 					...state,
 					itemObj: initSelectAllFun(state.itemObj, !state.is_all_selected),
@@ -127,7 +127,7 @@ export default function cart(state = initialState, action = {}) {
 				};
 			} else {
 				select_items = initSelectFun(state.itemObj, select_id, state.is_all_selected);
-				total_amount =  initChangeDataFun(select_items.itemObj).total_amount;
+				total_amount = initChangeDataFun(select_items.itemObj).total_amount;
 				state = {
 					...state,
 					itemObj: select_items.itemObj,
