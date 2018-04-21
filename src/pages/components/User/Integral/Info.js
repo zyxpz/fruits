@@ -17,7 +17,7 @@ class Info extends Component {
 				<div className="g-fs-28">您当前积分为 <span className="g-green g-fs-32">{integral}</span> 分</div>
 				<div className="g-pink g-tr">注：100积分 = 1元</div>
 			</div>
-		)
+		);
 	}
 
 }

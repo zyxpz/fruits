@@ -3,7 +3,7 @@ import API_ROOT from '../../../constants/apiRoot';
 import * as types from '../../../constants/actions/category';
 const bgStyle = {
 	background: `#fff`
-}
+};
 class LeftNav extends Component {
 	constructor(props) {
 		super(props);
@@ -19,7 +19,7 @@ class LeftNav extends Component {
 		const { itemArr, itemObj } = left;
 		return (
 			<div className="v-categary-left-nav g-reset" 
-			style={{width: `25%`, height: _global.innerHeight - 95, overflow: `auto` }}>
+				style={{ width: `25%`, height: _global.innerHeight - 95, overflow: `auto` }}>
 				<div className="g-flex g-fd-c">
 					{
 						itemArr.map((item, index) => {
@@ -37,7 +37,7 @@ class LeftNav extends Component {
 					}
 				</div>
 			</div>
-		)
+		);
 	}
 
 }

@@ -14,14 +14,14 @@ class Header extends Component {
 		return (
 			<div className="v-user-balance-header g-reset">
 				<div className="g-fixed-content-top">
-					<div className="g-flex g-jc-sb g-bg-white g-pd" style={{color: `#00ac26`}}>
+					<div className="g-flex g-jc-sb g-bg-white g-pd" style={{ color: `#00ac26` }}>
 						<i onClick={this.handleClick} className="iconfont icon-left"/>
 						<div className="g-col g-tc g-lh-44">余额</div>
 					</div>
 				</div>
 				<div style={{ height: 84 }}/>
 			</div>
-		)
+		);
 	}
 
 }

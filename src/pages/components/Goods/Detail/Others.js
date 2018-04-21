@@ -42,7 +42,7 @@ class Others extends Component {
 								data-id={id}
 								to={`/goods/detail/${id}`}
 							>
-								<div style={{border: `solid 1px #ececec`, width: 140, height: 140 }}>
+								<div style={{ border: `solid 1px #ececec`, width: 140, height: 140 }}>
 									<img className="g-img-140" src={goods_pic} alt=""/>
 								</div>
 								<div className="g-col-2 g-lh-44 g-pd-l g-tl">
@@ -58,7 +58,7 @@ class Others extends Component {
 				}
 				
 			</div>
-		)
+		);
 	}
 
 }

@@ -8,21 +8,21 @@ import detail from './api/detail';
 
 
 const API = Object.assign({},
-    home,
-    cart,
-    user,
-    category,
-    detail
+	home,
+	cart,
+	user,
+	category,
+	detail
 );
 let baseUrl;
 
 if (!DEV_WITH_PHP) {
-    //开发环境-前端自模拟
-    baseUrl = 'http://localhost:3000';
+	// 开发环境-前端自模拟
+	baseUrl = 'http://localhost:3000';
 } else {
-    //开发环境-后端数据
-    baseUrl = 'http://localhost:8181';
-    // baseUrl = 'http://localhost:8080';
+	// 开发环境-后端数据
+	baseUrl = 'http://localhost:8181';
+	// baseUrl = 'http://localhost:8080';
 }
 
 
@@ -42,6 +42,6 @@ if (!DEV_WITH_PHP) {
 
 
 for (let i in API) {
-    API[i] = baseUrl + API[i];
+	API[i] = baseUrl + API[i];
 }
 export default API;

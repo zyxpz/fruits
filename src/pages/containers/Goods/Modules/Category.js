@@ -37,7 +37,7 @@ class Container extends Component {
 		const { left, right, current_id, firstData, category_name } = category;
 		return (
 			<div>
-				{/*<Header home={home} actions={actions} dispatch={dispatch}/>*/}
+				{/* <Header home={home} actions={actions} dispatch={dispatch}/>*/}
 				<div className="g-flex g-bg-white" style={{ hieght: _global.innerHeight - 94 }}>
 					<LeftNav 
 						left={left} 
@@ -60,13 +60,13 @@ class Container extends Component {
 function mapStateToProps(state) {
 	return {
 		category: state.category
-	}
+	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(creators, dispatch),
 		dispatch   
-	}
+	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Container);

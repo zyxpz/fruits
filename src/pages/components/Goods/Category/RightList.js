@@ -43,11 +43,11 @@ class RightList extends Component {
 		return (
 			<div 
 				className="v-categary-right-list g-reset" 
-				style={{width: `75%`, height: _global.innerHeight - 95, overflow: `auto` }}
+				style={{ width: `75%`, height: _global.innerHeight - 95, overflow: `auto` }}
 			>
 				<div>
 					<div className="g-pd g-bg-white g-flex g-bb">
-						<div className="g-bg-green" style={{width: 3, height: 33}}/>
+						<div className="g-bg-green" style={{ width: 3, height: 33 }}/>
 						<div className="g-green g-pd-l">{category_name}</div>
 					</div>
 					<div>
@@ -73,7 +73,7 @@ class RightList extends Component {
 											data-id={id}
 											to={`/goods/detail/${id}`}
 										>
-											<div style={{border: `solid 1px #ececec`, width: 140, height: 140 }}>
+											<div style={{ border: `solid 1px #ececec`, width: 140, height: 140 }}>
 												<img className="g-img-140" src={goods_pic} alt=""/>
 											</div>
 											<div className="g-col-2 g-lh-44 g-pd-l g-tl">

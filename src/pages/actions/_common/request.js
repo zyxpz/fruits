@@ -9,15 +9,15 @@ import * as types from '../../constants/actions/_common';
  * @return                 next
  */
 export function request(apiName, params, opts = {}, requiredFields = []) {
-    return (dispatch, getState) => {
-        let action = {
-            'API': {
-                apiName: apiName,
-                params: params,
-                opts: opts
-            },
-            type: types.API_REQUEST
-        };
-        return dispatch(action);
-    };
+	return (dispatch, getState) => {
+		let action = {
+			'API': {
+				apiName: apiName,
+				params: params,
+				opts: opts
+			},
+			type: types.API_REQUEST
+		};
+		return dispatch(action);
+	};
 }

@@ -4,8 +4,8 @@ import balance from './balance';
 import integral from './integral';
 
 export default {
-    user,
-    coupon,
-    balance,
-    integral
-}
+	user,
+	coupon,
+	balance,
+	integral
+};

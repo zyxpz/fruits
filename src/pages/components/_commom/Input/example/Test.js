@@ -7,12 +7,12 @@ import { dataValidity } from '@common/js/utils/utils';
 class Test extends Component {
 	constructor(props, context) {
 		super(props, context);
-		this.handleSubmit = ::this.handleSubmit;
+		this.handleSubmit = :: this.handleSubmit;
 	}
-	handleSubmit(){
+	handleSubmit() {
 		this.props.form.validateFields((errors, value) => {
 			if (errors) {
-				for ( let i in errors) {
+				for (let i in errors) {
 					if (errors[i]) {
 						console.log(errors[i].errors[0].message);
 						break;
@@ -79,7 +79,7 @@ class Test extends Component {
 					)}
 					type={`text`}
 					placeholder={`短信码`}
-					onSms = {() => {}}
+					onSms={() => { }}
 					clear
 				>短信:</Input>
 				<div onClick={this.handleSubmit}>提交</div>
