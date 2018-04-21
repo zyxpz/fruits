@@ -46,7 +46,7 @@ class Stepper extends Component {
 				if (value < max) {
 					this.handleStepperClick( 'add');
 				} else {
-					Toasts.info(maxTip);
+					Toast.info(maxTip);
 				}
 			} else {
 				this.handleStepperClick('add');
@@ -117,16 +117,16 @@ class Stepper extends Component {
 		const num = parseInt(value);
 
 		if (isNaN(num)) {
-			Toasts.info('请输入数字');
+			Toast.info('请输入数字');
 			return;
 		} else if ((!!max || max === 0) && value > max) {
-			Toasts.info(maxTip);
+			Toast.info(maxTip);
 			return;
 		} else if (value < min) {
-			Toasts.info('不能少于最少购买数量');
+			Toast.info('不能少于最少购买数量');
 			return;
 		} else if (num % changeTimes !== 0) {
-			Toasts.info('交换数量不正确，请查看交换说明');
+			Toast.info('交换数量不正确，请查看交换说明');
 			return;
 		}
 		this.setState({ value: num });
