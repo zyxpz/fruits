@@ -31,7 +31,7 @@ class Footer extends Component { // 不用Pure
 		return (
 			<div>
 				<div style={{ height: 95 }} />
-				<footer 
+				<footer
 					className="g-fixed-content g-flex g-reset g-tc g-lh-44 g-bt"
 				>
 					{
@@ -46,14 +46,14 @@ class Footer extends Component { // 不用Pure
 									className={
 										classnames(
 											"g-flex g-fd-c g-col",
-											{ 
-												"g-orange": (is_active == "user" && route == "/user") || (is_active == "goods" && route == "/goods/category") 
+											{
+												"g-orange": (is_active == "user" && route == "/user") || (is_active == "goods" && route == "/goods/category")
 											}
 										)}
 								>
-									<i className={`iconfont ${icon} g-fs-36`} style={{ paddingTop: 5 }}/>
+									<i className={`iconfont ${icon} g-fs-36`} style={{ paddingTop: 5 }} />
 									<div className="g-fs-22">{name}</div>
-								</Link> 	
+								</Link>
 							);
 						})
 					}

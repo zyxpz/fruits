@@ -14,7 +14,7 @@ class Header extends Component {
 		return (
 			<div className="v-user-integral-header g-reset g-lh-44 g-fs-32">
 				<div className="g-fixed-content-top">
-					<div className="g-flex g-jc-sb g-bg-white g-pd" style={{color: `#00ac26`}}>
+					<div className="g-flex g-jc-sb g-bg-white g-pd" style={{ color: `#00ac26` }}>
 						<i onClick={this.handleClick} className="iconfont icon-left"/>
 						<div className="g-col g-tc">我的积分</div>
 						<Link
@@ -22,9 +22,9 @@ class Header extends Component {
 						>兑换</Link>
 					</div>
 				</div>
-				<div style={{height: 84}}></div>
+				<div style={{ height: 84 }}></div>
 			</div>
-		)
+		);
 	}
 
 }

@@ -11,7 +11,7 @@ const bgStyle = {
 	display: `flex`,
 	alignItems: `center`,
 	justifyContent: `center`,
-}
+};
 const list = [
 	{
 		bg: `g-bg-pink`,
@@ -49,7 +49,7 @@ const list = [
 		icon: "icon-shichi",
 		title: "我的试吃"
 	},
-]
+];
 class Info extends Component {
 	constructor(props) {
 		super(props);
@@ -61,11 +61,11 @@ class Info extends Component {
 					{
 						list.map((item, index) => {
 							const { url, title, icon, bg } = item;  
-							return(
+							return (
 								<Link 
 									key={index}
 									className="g-tc g-pd-t g-pd-b g-b-r g-bb" 
-									style={{width: `33.33%`}}
+									style={{ width: `33.33%` }}
 									to={url}
 								>
 									<div className={bg} style={bgStyle}>
@@ -73,12 +73,12 @@ class Info extends Component {
 									</div>
 									<p className="g-gray g-m-t">{title}</p>
 								</Link>
-							)
+							);
 						})
 					}
 				</div>
 			</div>
-		)
+		);
 	}
 
 }

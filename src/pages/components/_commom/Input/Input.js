@@ -39,10 +39,10 @@ class Input extends Component {
 		this.handleFocus = this.handleFocus.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 		// 自定义
-		this.handleClear  = this.handleClear.bind(this);
+		this.handleClear = this.handleClear.bind(this);
 		this.handleSearch = this.handleSearch.bind(this);
 		this.handleRun = this.handleRun.bind(this);
-		this.countDown = this.countDown.bind(this); 
+		this.countDown = this.countDown.bind(this);
 		this.handleScan = this.handleScan.bind(this);
 		this.state = {
 			seconds: 60,
@@ -133,7 +133,7 @@ class Input extends Component {
 		// 	})
 		// }
 		try {
-			this.props.onVaild && await this.props.onVaild(); 
+			this.props.onVaild && await this.props.onVaild();
 			this.setState({
 				run: true
 			});
@@ -212,7 +212,7 @@ class Input extends Component {
 			onScan
 		} = this.props;
 		return (
-			<div 
+			<div
 				className={
 					classnames(
 						("common-input"),
@@ -220,7 +220,7 @@ class Input extends Component {
 					)
 				}
 			>
-				<div 
+				<div
 					className={
 						classnames(
 							"_row __input",
@@ -231,7 +231,7 @@ class Input extends Component {
 					style={styleRow}
 				>
 					{children &&
-						<div 
+						<div
 							className={
 								classnames(
 									"__col-3 __pd-l g-text-over",
@@ -244,7 +244,7 @@ class Input extends Component {
 						</div>
 					}
 
-					<input 
+					<input
 						className={
 							classnames(
 								{ "__tc __col-10 __col-ml-1 ": !children },
@@ -259,7 +259,7 @@ class Input extends Component {
 						value={value}
 						maxLength={maxLength}
 						style={{ height: 40, marginTop: 20, marginBottom: 20, lineHeight: '40px', ...styleInput }}
-						type={type} 
+						type={type}
 						placeholder={placeholder}
 						onKeyUp={this.handleKeyUp}
 						onChange={this.handleChange}
@@ -271,7 +271,7 @@ class Input extends Component {
 
 					{
 						(clear && value && !isBlur) &&
-						<i 
+						<i
 							className="__col-1 iconfont icon-close __black"
 							onClick={this.handleClear}
 						/>
@@ -279,7 +279,7 @@ class Input extends Component {
 
 					{
 						(onSearch) &&
-						<i 
+						<i
 							className={
 								classnames(
 									"iconfont icon-search __black",
@@ -291,7 +291,7 @@ class Input extends Component {
 					}
 					{
 						(onScan) &&
-						<i 
+						<i
 							className={
 								classnames(
 									"iconfont icon-qrcode __black",
@@ -303,8 +303,8 @@ class Input extends Component {
 					}
 					{
 						onSms &&
-						<div 
-							style={{ minWidth: 200 }} 
+						<div
+							style={{ minWidth: 200 }}
 							onClick={this.handleRun}
 							className={
 								classnames(

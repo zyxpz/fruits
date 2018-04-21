@@ -18,7 +18,7 @@ class List extends Component {
 				</div>
 				{
 					list.map((item, index) => {
-						const { jifen, annotation, time} = item;
+						const { jifen, annotation, time } = item;
 						return (
 							<div>
 								<div className="g-flex g-tc g-pd">
@@ -27,11 +27,11 @@ class List extends Component {
 									<div className="g-1of3">{annotation}</div>
 								</div>
 							</div>
-						)
+						);
 					})
 				}
 			</div>
-		)
+		);
 	}
 
 }

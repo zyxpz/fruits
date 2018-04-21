@@ -10,7 +10,7 @@ class Header extends Component {
 	render() {
 		return (
 			<div className="v-categary-header g-reset">
-				 {/*<div className="g-flex">
+				 {/* <div className="g-flex">
 					<div>位置</div>
 					<div>
 						<SearchBar
@@ -25,7 +25,7 @@ class Header extends Component {
 					</div>
 				 </div>*/}
 			</div>
-		)
+		);
 	}
 
 }

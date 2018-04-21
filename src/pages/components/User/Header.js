@@ -10,17 +10,17 @@ class Header extends Component {
 		const { headimgurl, nickname } = this.props;
 		return (
 			<div className="v-user-header g-reset">
-				<div className="g-flex g-fd-c g-jc-c g-ai-c g-bg-lgr-orange-1" style={{height: 320}}>
+				<div className="g-flex g-fd-c g-jc-c g-ai-c g-bg-lgr-orange-1" style={{ height: 320 }}>
 					<img
 						className="g-img-170" 
 						src={headimgurl} 
 						alt=""
-						style={{borderRadius: `100%`}}
+						style={{ borderRadius: `100%` }}
 					/>
 					<p className="g-fs-40 g-pd">{nickname}</p>
 				</div>
 			</div>
-		)
+		);
 	}
 
 }

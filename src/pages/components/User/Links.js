@@ -16,7 +16,7 @@ class Links extends Component {
 				<div className="g-flex">
 					<Link 
 						className="g-tc g-m-t-20 g-m-b-20 g-b-r" 
-						style={{width: `33.33%`}}
+						style={{ width: `33.33%` }}
 						to="/user/integral"
 					>
 						<p className="g-fs-34">积分</p>
@@ -24,7 +24,7 @@ class Links extends Component {
 					</Link>
 					<Link 
 						className="g-tc g-m-t-20 g-m-b-20 g-b-r" 
-						style={{width: `33.33%`}}
+						style={{ width: `33.33%` }}
 						to="/user/balance"
 					>
 						<p className="g-fs-34">余额</p>
@@ -32,7 +32,7 @@ class Links extends Component {
 					</Link>
 					<Link 
 						className="g-tc g-m-t-20 g-m-b-20" 
-						style={{width: `33.33%`}}
+						style={{ width: `33.33%` }}
 						to="/user/coupon"
 					>
 						<p className="g-fs-34">优惠券</p>
@@ -40,7 +40,7 @@ class Links extends Component {
 					</Link>
 				</div>
 			</div>
-		)
+		);
 	}
 
 }
