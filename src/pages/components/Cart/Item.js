@@ -21,7 +21,7 @@ class Item extends Component {
 	}
 	render() {
 		return (
-			<div className="v-cart-item g-reset">
+			<div className="v-cart-item g-reset" style={{ height: _global.innerHeight - 95 - 80, overflow: `auto` }}>
 				{
 					list.map((item, index) => {
 						const { id, goods_name, specification, stock, goods_count, goods_price, goods_pic, status } = item;
@@ -35,7 +35,10 @@ class Item extends Component {
 									<img className="g-img-140" src={goods_pic} alt=""/>
 								</div>
 								<div className="g-col-2 g-lh-44 g-pd-l g-tl">
-									<div className="g-black g-fs-30 g-twoline">{goods_name}</div>
+									<div className="g-flex">
+										<div className="g-black g-fs-30 g-twoline g-col">{goods_name}</div>
+										<div className="g-orange" style={{ width: 60 }}>删除</div>
+									</div>
 									<div className="g-gray g-fs-24">{specification}</div>
 									<div className="g-flex g-jc-sb">
 										<div className="g-pink">￥<span className="g-fs-30">{goods_price}</span></div>
