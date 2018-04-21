@@ -11,7 +11,7 @@ const list = [
 	{
 		name: "商品",
 		icon: "icon-categary",
-		route: "/category",
+		route: "/goods/category",
 	},
 	{
 		name: "购物车",
@@ -27,6 +27,7 @@ const list = [
 class Footer extends Component { // 不用Pure
 	render() {
 		const { pathname } = this.props;
+		const is_active = pathname ? pathname.split('/')[1] : "";
 		return (
 			<div>
 				<div style={{ height: 95 }} />
@@ -45,7 +46,9 @@ class Footer extends Component { // 不用Pure
 									className={
 										classnames(
 											"g-flex g-fd-c g-col",
-											{"g-orange": (pathname == "/user/balance" || pathname == "/user/integral" || pathname == "/user/coupon") && route == "/user"}
+											{ 
+												"g-orange": (is_active == "user" && route == "/user") || (is_active == "goods" && route == "/goods/category") 
+											}
 										)}
 								>
 									<i className={`iconfont ${icon} g-fs-36`} style={{ paddingTop: 5 }}/>

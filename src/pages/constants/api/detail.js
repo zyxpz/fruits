@@ -2,6 +2,6 @@ const api = {
 	/**
 	 *加法
 	 */
-	'HOME_COUNT_ADD': '/api/test.json',
+	'DETAIL_MAIN_GET': '/api/goods/content.json',
 };
 export default api;

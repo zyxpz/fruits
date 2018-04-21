@@ -8,6 +8,7 @@ const initialState = {
     },
     right:{},
     current_id: "",
+    category_name: "",
     firstData: []
 };
 export default function category (state = initialState, action={}) {
@@ -29,7 +30,8 @@ export default function category (state = initialState, action={}) {
                     itemArr: [...[], ...items.itemArr],
                     itemObj: {...{}, ...items.itemObj}
                 },
-                current_id: curr_id
+                current_id: curr_id,
+                category_name: action.data.data[0].categroy_name
             }
             return state;
         case types.CATEGORY_RIGHT_LIST_GET + '_ON':
@@ -46,12 +48,13 @@ export default function category (state = initialState, action={}) {
                     [state.current_id]: {
                         ...action.data.data
                     }
-                }
+                },
+                category_name: state.left.itemObj[state.current_id].categroy_name
             }
             : 
             {
                 ...state,
-                firstData: [...[],...action.data.data.list]
+                firstData: [...[],...action.data.data.list],
             }
             return state;
         case types.CATEGORY_MAIN_CHANGE:

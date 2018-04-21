@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as types from '../../../constants/actions/user';
 import { Toast } from 'antd-mobile';
 
-//redux
+// redux
 import { bindActionCreators } from 'redux';
 import * as creators from '../../../actions/user';
 import { connect } from 'react-redux';
@@ -40,18 +40,18 @@ class Container extends Component {
 				<List list={list}/>
 				<Footer pathname={pathname}/>
 			</div>
-		)
+		);
 	}
 }
 function mapStateToProps(state) {
 	return {
 		coupon: state.coupon
-	}
+	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(creators, dispatch)
-	}
+	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Container);
