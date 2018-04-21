@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as types from '../../../constants/actions/cart';
 import { Toast } from 'antd-mobile';
 // 业务组件
-import Item from "../../../components/Cart/Item";
+import List from "../../../components/Cart/List";
 import CartFooter from "../../../components/Cart/CartFooter";
 
 import Footer from "../../../components/_commom/Footer/Footer";
@@ -23,7 +23,6 @@ class Container extends Component {
 			param: param,
 			ajaxType: 'GET',
 			onSuccess: (res) => {
-				Toast.info(res.msg, 1);
 			},
 			onError: (res) => {
 				Toast.info(res.msg, 1);
@@ -32,13 +31,35 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		const { cart, actions, dispatch } = this.props;
-		const { list = [], total } = cart;
+		const {
+			cart,
+			actions,
+			dispatch
+		} = this.props;
+		const {
+			itemArr,
+			itemObj,
+			list = [],
+			total,
+			is_all_selected,
+			select_str
+		} = cart;
+		console.log(cart, 88);
 		return (
 			<div className="g-bg-white">
 				<div style={{ height: _global.innerHeight - 95 }} className="g-flex g-fd-c g-jc-sb">
-					<Item cart={cart} actions={actions} />
-					<CartFooter />
+					<List 
+						itemArr={itemArr} 
+						itemObj={itemObj} 
+						cart={cart} 
+						actions={actions} 
+					/>
+					<CartFooter 
+						total={total} 
+						actions={actions} 
+						is_all_selected={is_all_selected}
+						select_str={select_str}
+					/>
 				</div>
 				<Footer />
 			</div>

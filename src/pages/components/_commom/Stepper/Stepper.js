@@ -125,10 +125,7 @@ class Stepper extends Component {
 		} else if (value < min) {
 			Toast.info('不能少于最少购买数量');
 			return;
-		} else if (num % changeTimes !== 0) {
-			Toast.info('交换数量不正确，请查看交换说明');
-			return;
-		}
+		} 
 		this.setState({ value: num });
 		onChange(num);
 	}
@@ -160,7 +157,7 @@ class Stepper extends Component {
 						valueStyle,
 					)}
 					// style={inputEnable ? { border: `solid 1px #e8e8e8`, background: `#f1f1f1` } : {}}
-					// onClick={inputEnable ? this.showInputNumPop : null}
+					onClick={inputEnable ? this.showInputNumPop : null}
 				>
 					{value}
 				</div>
