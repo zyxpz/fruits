@@ -4,38 +4,19 @@ import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import * as creators from '../../../actions/cart';
 import { connect } from 'react-redux'; 
-import * as types from '../../../constants/actions/cart';
-import { Toast } from 'antd-mobile';
 // 业务组件
-import Item from "../../../components/Cart/Item";
-import CartFooter from "../../../components/Cart/CartFooter";
+import Header from "../../../components/Home/Header";
 import Footer from "../../../components/_commom/Footer/Footer";
 
 class Container extends Component {
 	constructor(props) {
 		super(props);
 	}
-	componentDidMount() {
-		let url = types.CART_MAIN_GET;
-		let param = {};
-		let params = {
-			param: param,
-			ajaxType: 'GET',
-			onSuccess: (res) => {
-				Toast.info(res.msg, 1);
-			},
-			onError: (res) => {
-				Toast.info(res.msg, 1);
-			}
-		};
-		this.props.actions.request(url, params, {});
-	}
 	render() {
-		const { cart, actions, dispatch } = this.props;
+		const { home, actions, dispatch } = this.props;
 		return (
-			<div className="g-bg-white" style={{ height: _global.innerHeight - 95 }}>
-				<Item cart={cart} actions={actions} />
-				<CartFooter cart={cart} actions={actions} />
+			<div>
+				<Header home={home} actions={actions} dispatch={dispatch}/>
 				<Footer />
 			</div>
 		);
@@ -43,7 +24,7 @@ class Container extends Component {
 }
 function mapStateToProps(state) {
 	return {
-		cart: state.cart
+		home: state.home
 	};
 }
 

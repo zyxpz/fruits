@@ -14,7 +14,7 @@ class List extends Component {
 				{
 					list.map((item, index) => {
 						const { id, last_time, sale_money, top_money, type_id } = item;
-						return(
+						return (
 							<div 
 								key={index}
 								className="g-pd"
@@ -30,16 +30,16 @@ class List extends Component {
 										</div>
 									</div>
 									<div className="g-col g-tc g-flex g-fd-c g-jc-sa g-pd">
-										<div className="g-fs-26" style={{fontWeight: 700}}>积分红包</div>
+										<div className="g-fs-26" style={{ fontWeight: 700 }}>积分红包</div>
 										<div className="g-fs-22 g-gray">{last_time}前有效</div>
 									</div>
 								</div>
 							</div>	
-						)
+						);
 					})
 				}
 			</div>
-		)
+		);
 	}
 
 }

@@ -22,7 +22,7 @@ ToastsStatics = {
 		options = {
 			...options,
 			message,
-			duration: duration == 0 ? 1 * 60 * 60 * 24	 : duration,
+			duration: duration == 0 ? 1 * 60 * 60 * 24 : duration,
 			onCallback,
 			showClose,
 			onCloseSoon: () => {
@@ -71,8 +71,8 @@ class Toasts extends Component {
 	};
 	constructor(props) {
 		super(props);
-		this.handleClose = ::this.handleClose;
-		this.handlePress = ::this.handlePress;
+		this.handleClose = :: this.handleClose;
+		this.handlePress = :: this.handlePress;
 	}
 	componentWillMount() {
 		this.duration = setTimeout(() => {
@@ -82,7 +82,7 @@ class Toasts extends Component {
 	}
 	componentDidMount() {
 	}
-	componentWillUnmount(){
+	componentWillUnmount() {
 		this.timer && clearTimeout(this.timer);
 		this.duration && clearTimeout(this.duration);
 	}
@@ -95,7 +95,7 @@ class Toasts extends Component {
 		// 移除弹窗
 		this && this.props.onClose && this.props.onClose();
 	}
-	handleClose(e){
+	handleClose(e) {
 		e && e.preventDefault();
 		e && e.stopPropagation();
 		this.refs.fixed.classList.add("__leave");
@@ -117,13 +117,13 @@ class Toasts extends Component {
 		} = this.props;
 		return (
 			<div className={`common-toast ${className}`} style={{ ...style }}>
-				{showClose && <div className="__bg" ref={`bg`} onClick={this.handleClose}/>}
+				{showClose && <div className="__bg" ref={`bg`} onClick={this.handleClose} />}
 				<div className="__fixed" ref={`fixed`}>
 					{message}
 				</div>
 			</div>
 		);
-		
+
 	}
 }
 Toasts.propTypes = {

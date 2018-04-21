@@ -1,8 +1,8 @@
 import API_ROOT from '../constants/apiRoot';
-import { DEV_WITH_PHP } from '../constants/constants'
+import { DEV_WITH_PHP } from '../constants/constants';
 import { Toast } from 'antd-mobile';
 
-let  ajax = (options) => {
+let ajax = (options) => {
 	let xhr = new XMLHttpRequest();
 	let url = options.url;
 	let paramObj = options.param;
@@ -11,14 +11,14 @@ let  ajax = (options) => {
 	let uploadProgress = options.uploadProgress;
 	let method = options.type || 'GET';
 	let noLoading = options.noLoading;
-	
-	method = method.toUpperCase(); //默认转化为大写
+
+	method = method.toUpperCase(); // 默认转化为大写
 	if (!url) {
 		console.error('请求地址不存在');
 	}
 	!noLoading && Toast.hide();// hack
 	// !noLoading && Toasts.hide();// hack
-	!noLoading && Toast.loading(null, 0);
+	// !noLoading && Toast.loading(null, 0);
 	/**
 	 * 因为json-server是rest的接口；本地测试做个判断
 	 */
@@ -40,6 +40,22 @@ let  ajax = (options) => {
 	let onDataReturn = data => {
 		if (data.status > 0) { // 保留
 			success_cb && success_cb(data);
+		} else if (data.status === -1) {
+			Toast.info(data.msg, 1.5);
+		} else if (data.status === -10) { // 代理商需重新登陆
+			delCookie('agent');
+			Toast.hide();
+			Toast.info("登录状态已过期，请重新登录", 1, () => {
+				location.href = '/agent-login';
+			});
+		} else if (data.status === -5) { // 链接失效
+			Toast.hide();
+			_global.history.replace('/invaild');
+		} else if (data.status === -6) { // 链接失效
+			Toast.hide();
+			Toast.info("请先完成首次进货", 1, () => {
+				_global.history.replace('/agent-home');
+			});
 		} else {
 			// -2 重新选择地址
 			// 其他
@@ -58,9 +74,8 @@ let  ajax = (options) => {
 	try {
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4) {
-				Toast.hide();
 				if (xhr.status == 200) {
-					//try {
+					// try {
 					let data = JSON.parse(xhr.responseText);
 					onDataReturn(data);
 					// } catch (e) {
@@ -126,12 +141,12 @@ let  ajax = (options) => {
 			xhr.open(method, url, true);
 			// xhr.withCredentials = true;
 			// 跨域资源请求会发生两次 一次是204 可以参考cors // 无视就好
-				xhr.setRequestHeader(
-					'Content-Type', 'application/x-www-form-urlencoded'
-				);
-				xhr.setRequestHeader(
-					'X-Requested-With', 'XMLHttpRequest'
-				);
+			xhr.setRequestHeader(
+				'Content-Type', 'application/x-www-form-urlencoded'
+			);
+			xhr.setRequestHeader(
+				'X-Requested-With', 'XMLHttpRequest'
+			);
 			xhr.send(method === 'POST' ? paramArray.join('&') : '');
 		}
 

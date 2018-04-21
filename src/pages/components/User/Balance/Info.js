@@ -7,7 +7,7 @@ const imgStyle = {
 	borderRadius: `100%`,
 	border: `solid 1px #ececec`,
 	overflow: `hidden`
-}
+};
 class Header extends Component {
 	constructor(props) {
 		super(props);
@@ -28,7 +28,7 @@ class Header extends Component {
 					您当前余额为 <span className="g-green g-fs-30">{balance}</span> 元
 				</div>
 			</div>
-		)
+		);
 	}
 
 }
