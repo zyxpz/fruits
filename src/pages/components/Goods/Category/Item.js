@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import API_ROOT from '../../../constants/apiRoot';
-import * as types from '../../../constants/actions/cart';
+import * as types from '../../../constants/actions/category';
 import { Toast } from 'antd-mobile';
 import { Link } from 'react-router';
 import Stepper from "../../../components/_commom/Stepper/Stepper";
@@ -10,14 +10,14 @@ class Item extends Component {
 	}
 	handleChange = (val) => {
 		const { id } = this.props.itemData; 
-		let url = types.CART_COUNT_CHANGE_POST;
+		let url = types.CATRGORY_COUNT_CHANGE_POST;
 		let param = {
 			goods_id: id,
 			goods_count: val
 		};
 		let params = {
 			param: param,
-			ajaxType: 'GET',
+			ajaxType: 'POST',
 			onSuccess: (res) => {
 			},
 			onError: (res) => {

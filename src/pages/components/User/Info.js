@@ -15,8 +15,8 @@ const bgStyle = {
 const list = [
 	{
 		bg: `g-bg-pink`,
-		url: "/",
-		icon: "icon-order",
+		url: "/order/list",
+		icon: "icon-order?type=0",
 		title: "我的订单"
 	},
 	{
@@ -27,7 +27,7 @@ const list = [
 	},
 	{
 		bg: `g-bg-orange`,
-		url: "/",
+		url: "/user/grade",
 		icon: "icon-grade",
 		title: "会员等级"
 	},

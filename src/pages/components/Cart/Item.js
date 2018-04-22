@@ -19,7 +19,7 @@ class Item extends Component {
 		};
 		let params = {
 			param: param,
-			ajaxType: 'GET',
+			ajaxType: 'POST',
 			onSuccess: (res) => {
 			},
 			onError: (res) => {

@@ -14,7 +14,7 @@ class Header extends Component {
   		nickname = '顶部',
   	} = this.props;
   	return (
-  		<div className="v-user-coupon-header g-reset g-m-b-20">
+  		<div className="v-user-coupon-header g-reset">
   			<div className="g-fixed-content-top">
   				<div className="g-flex g-jc-sb g-bg-white g-pd" style={{ color: `#00ac26` }}>
   					<i onClick={this.handleClick} className="iconfont icon-left" />
