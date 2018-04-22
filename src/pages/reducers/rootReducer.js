@@ -5,6 +5,8 @@ import cart from './cart/root';
 import category from './category/root';
 import user from './user/root';
 import detail from './detail/root';
+import order from './order/root';
+
 
 
 // 之前的文档曾建议使用 ES6 的 import * as reducers 语法来获得 reducer 对象(我之前也是这么用的)。
@@ -18,6 +20,7 @@ const rootReducer = combineReducers({
 	...user,
 	...cart,
 	...category,
-	...detail
+	...detail,
+	...order
 });
 export default rootReducer;

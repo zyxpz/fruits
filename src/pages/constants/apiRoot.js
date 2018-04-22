@@ -4,6 +4,8 @@ import cart from './api/cart';
 import user from './api/user';
 import category from './api/category';
 import detail from './api/detail';
+import order from './api/order';
+
 
 
 
@@ -12,7 +14,8 @@ const API = Object.assign({},
 	cart,
 	user,
 	category,
-	detail
+	detail,
+	order
 );
 let baseUrl;
 

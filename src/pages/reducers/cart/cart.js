@@ -1,4 +1,6 @@
 import * as types from '../../constants/actions/cart';
+import * as categoryTypes from '../../constants/actions/category';
+
 import { initItem } from "../../utils/utils";
 const initialState = {
 	itemArr: [],
@@ -21,7 +23,7 @@ const initDeleteFun = (itemObj, itemArr, id) => {
 	});
 	for (let i in itemObj) {
 		if (i == id) {
-			itemObj.delete(id);
+			itemObj.delete.i;
 		}
 	}
 	return { itemArr, itemObj };
@@ -136,6 +138,11 @@ export default function cart(state = initialState, action = {}) {
 					select_str: select_str
 				};
 			}
+			return state;
+		case categoryTypes.CATRGORY_COUNT_CHANGE_POST + '_SUCCESS':
+			state = {
+				...initialState,
+			};
 			return state;
 		default:
 			return state;

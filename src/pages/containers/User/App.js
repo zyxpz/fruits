@@ -34,5 +34,14 @@ export const userConfig = [
 			});
 		},
 		// onEnter: redirectToLogin
+	},
+	{
+		path: '/user/grade',
+		getComponent: (nextState, cb) => {
+			require.ensure([], (require) => {
+				cb(null, require('./Modules/Grade').default);
+			});
+		},
+		// onEnter: redirectToLogin
 	}
 ]; 
