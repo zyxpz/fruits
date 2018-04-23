@@ -109,6 +109,9 @@ const config = {
       disable: false,
       allChunks: true
     }),
+    new webpack.EvalSourceMapDevToolPlugin({
+      filename: 'bundle.js.map',
+    }),
     // 启动项目自启页面
     new OpenBrowserPlugin({
       url: 'http://localhost:8181/'
