@@ -11,7 +11,25 @@ class PopupDom extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			btn: true
+			btn: true,
+			list: [
+				{
+					name: '姓名',
+					type: 'name'
+				},
+				{
+					name: '电话',
+					type: 'name'
+				},
+				{
+					name: '城市',
+					type: 'name'
+				},
+				{
+					name: '详细地址',
+					type: 'name'
+				}
+			]
 		};
 
 		this.handleClickHide = this.props.handleClickHide; // 关闭弹层
@@ -87,11 +105,11 @@ class PopupDom extends Component {
 	render() {
   	const {
 			show,
-			list
   	} = this.props;
 		
   	const {
 			btn,
+			list
 		} = this.state;
 		
   	return (
@@ -103,10 +121,18 @@ class PopupDom extends Component {
   						<span onClick={() => { this.handleClickHide(); }}>X</span>
   					</div>
 						
-  					<p>姓名: <input type="text" name="name" onChange={this.handleOnChange} onBlur={this.handleBlur} value={list && list[0].name} /></p>
-  					<p>电话: <input type="phone" name="phone" onChange={this.handleOnChange} onBlur={this.handleBlur} value={list && list[0].phone} /></p>
-  					<p>城市: <input type="text" name="city" onChange={this.handleOnChange} onBlur={this.handleBlur} value="浙江省绍兴市上虞区" /></p>
-  					<p>详细地址: <input type="text" name="place" onChange={this.handleOnChange} onBlur={this.handleBlur} value={list && list[0].place} /></p>
+  					{/* <p>姓名: <input type="text" name="name" onChange={this.handleOnChange} onBlur={this.handleBlur} /></p>
+  					<p>电话: <input type="phone" name="phone" onChange={this.handleOnChange} onBlur={this.handleBlur} /></p>
+  					<p>城市: <input type="text" name="city" onChange={this.handleOnChange} onBlur={this.handleBlur}  /></p>
+						<p>详细地址: <input type="text" name="place" onChange={this.handleOnChange} onBlur={this.handleBlur} /></p> */}
+						<ul>
+							{
+								list.map((t, i) => (
+									<li>{t.name}:<input type="text" name={t.type} onChange={this.handleOnChange} onBlur={this.handleBlur} /></li>
+								))
+							}
+							
+						</ul>
   					<button onClick={this.handleClick} disabled={btn}>提交</button>
   				</div> : ''
   			}

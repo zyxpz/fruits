@@ -124,7 +124,7 @@ class List extends Component {
 		const {
 			list
 		} = this.props;
-		console.log(list);
+
 		return (
 			<div>
 				<ul>
