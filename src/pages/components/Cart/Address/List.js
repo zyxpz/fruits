@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Radio, Toast } from 'antd-mobile';
 import * as types from '../../../constants/actions/cart';
-import AddAddress from './add';
+import AddRevise from './AddRevise';
 
 
 class List extends Component {
@@ -9,6 +9,7 @@ class List extends Component {
 		super(props);
 		this.state = {
 			checked: 0,
+			btn: true
 		};
 	}
 
@@ -17,7 +18,6 @@ class List extends Component {
 			const {
 				list
 			} = nextProps;
-
 			list && list.map((t, i) => {
 				if (t.status === '1') {
 					this.setState({
@@ -30,6 +30,7 @@ class List extends Component {
 
 	}
 
+	// 默认地址选项
 	handleOnChange = e => {
 		const {
 			id,
@@ -37,9 +38,11 @@ class List extends Component {
 		this.setState({
 			checked: 1,
 			id,
+			btn: false
 		});
 	}
 
+	// 修改默认地址提交
 	handleCommitBtn = () => {
 		const {
 			id
@@ -47,7 +50,7 @@ class List extends Component {
 		const {
 			list
 		} = this.props;
-		let url = types.CART_ADDRESS_MAIN_GET;
+		let url = types.CART_ADDRESS_DEF_PLACE_MAIN_GET;
 
 		let param = {
 
@@ -74,15 +77,14 @@ class List extends Component {
 		this.props.actions.request(url, params, {});
 	}
 
+	// 删除地址
 	handleRemove = e => {
 		const id = e.target.getAttribute('id');
-		const { list } = this.props;
 
 		let url = types.CART_ADDRESS_DEL_MAIN_GET;
 
 		let param = {
 			id,
-			list
 		};
 		let params = {
 			param: param,
@@ -98,15 +100,31 @@ class List extends Component {
 		this.props.actions.request(url, params, {});
 	}
 
+	// 修改地址
+	handleRevise = e => {
+		const id = e.target.getAttribute('id');
+		const {
+			list
+		} = this.props;
+		const arr = list.filter(val => val.id === id);
+		
+		this.setState({
+			reviseList: arr,
+		});
+	}
+
 	render() {
 
 		const {
 			checked,
-			id
+			id,
+			btn,
+			reviseList
 		} = this.state;
 		const {
 			list
 		} = this.props;
+		console.log(list);
 		return (
 			<div>
 				<ul>
@@ -126,16 +144,18 @@ class List extends Component {
 									<span>{t.place}</span>
 									<span>{t.city}</span>
 									<button id={t.id} onClick={this.handleRemove}>删除</button>
+									<button id={t.id} onClick={this.handleRevise}>修改</button>
 								</Radio>
 							</li>
 						))
 					}
 				</ul>
-				<AddAddress
+				<AddRevise
+					list={reviseList}
 					actions={this.props.actions}
 				/>
 				<button
-					disabled={list === [] ? 'true' : 'false'}
+					disabled={btn}
 					onClick={this.handleCommitBtn}
 				>
 					确定
