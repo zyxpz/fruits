@@ -96,11 +96,6 @@ const config = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production")
-      }
-    }),
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
@@ -108,23 +103,36 @@ const config = {
       filename: "styles.css",
       disable: false,
       allChunks: true
-    }),
-    // 启动项目自启页面
-    new OpenBrowserPlugin({
-      url: 'http://localhost:8181/'
     })
   ]
 };
 
 if (process.env.NODE_ENV === 'production') {
   // 生成环境 代码压缩
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false
     }
-  }));
+  })
+);
 } else {
-  new webpack.HotModuleReplacementPlugin();
+  config.plugins.push(
+    new webpack.EvalSourceMapDevToolPlugin({
+      filename: 'bundle.js.map',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    // 启动项目自启页面
+    new OpenBrowserPlugin({
+      url: 'http://localhost:8181/'
+    })
+  )
+
 }
 
 config.externals = {

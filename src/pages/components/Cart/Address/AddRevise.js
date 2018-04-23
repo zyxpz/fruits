@@ -12,9 +12,20 @@ class AddAddress extends Component {
 		};
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.list !== nextProps.list) {
+			this.setState({
+				list: nextProps.list,
+				show: true,
+				title: '修改地址'
+			});
+		}
+	}
+
   handleClick = () => {
   	this.setState({
-  		show: true
+  		show: true,
+  		title: '新增地址'
   	});
   }
 
@@ -27,16 +38,19 @@ class AddAddress extends Component {
 
   render() {
   	const {
-  		show
+  		show,
+  		title,
+  		list
   	} = this.state;
   	return (
   		<div>
   			<button onClick={this.handleClick}>添加更多</button>
   			<PopupDom
-  				title="新增地址"
+  				title={title}
   				show={show}
   				handleClickHide={this.handleClickHide}
   				actions={this.props.actions}
+  				list={list}
   			/>
   		</div>
 
