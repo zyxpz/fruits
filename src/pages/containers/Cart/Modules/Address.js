@@ -32,14 +32,13 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		const { list } = this.props.address;
 		return (
 			<div className="g-bg-white">
 				<Header
 					nickname="管理收货地址"
 				/>
 				<List
-					list={list}
+					{...this.props.address}
 					actions={this.props.actions}
 				/>
 				<Footer />

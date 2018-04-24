@@ -11,3 +11,19 @@ export function selectChange(type, id) {
 		select_type: type
 	};
 }
+
+export const changeInputRadio =  id => ({
+	type: types.CART_CHANGT_INPUT_RADIO,
+	id,
+});
+
+
+export const popupShowOrHide = opts => ({
+	type: types.CART_POPUP_SHOW,
+	opts,
+});
+
+export const changeAddress = opts => ({
+	type: types.CART_ADDRESS_CHANGE,
+	opts
+});
