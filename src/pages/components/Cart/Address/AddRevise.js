@@ -7,7 +7,7 @@ import PopupDom from './Popup';
 class AddAddress extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { 
+		this.state = {
 			title: "",
 			show: !1
 		};
@@ -20,19 +20,19 @@ class AddAddress extends Component {
 		});
 	}
 	render() {
-	  	return (
-	  		<div>
-	  			<div 
-	  				className="g-flex-cc g-pd g-bg-green"
-	  				onClick={this.handleClick}
-	  			>新增地址+</div>
-	  			<PopupDom
-	  				onClick={this.handleClick}
-	  				actions={this.props.actions}
+		return (
+			<div>
+				<div
+					className="g-flex-cc g-pd g-bg-green"
+					onClick={this.handleClick}
+				>新增地址+</div>
+				<PopupDom
+					onClick={this.handleClick}
+					actions={this.props.actions}
 					{...this.state}
-	  			/>
-	  		</div>
-	  	);
+				/>
+			</div>
+		);
 	}
 }
 

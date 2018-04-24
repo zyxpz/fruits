@@ -18,7 +18,7 @@ const btnStyle = {
 };
 @createForm({
 	wrappedComponentRef: true
-})
+	})
 class PopupDom extends Component {
 	constructor(props) {
 		super(props);
@@ -43,108 +43,7 @@ class PopupDom extends Component {
 			]
 		};
 	}
-	handleOnChange = () => {
-		const ipts = document.querySelectorAll('.J-add-revise-ipt');
-		let param = {};
-		let arr = [];
-		for (let i = 0, len = ipts.length; i < len; i++) {
-			const ele = ipts[i];
-			arr.push(ele);
-		}
 
-		arr.map(t => {
-
-			switch (t.getAttribute('name')) {
-				case 'name':
-					param.name = t.value;
-					if (param.name === '') {
-						t.style = 'border: solid 1px red';
-						t.placeholder = '不可为空';
-						return;
-					}
-					break;
-				case 'phone':
-					param.phone = t.value;
-					if (param.phone === '') {
-						t.style = 'border: solid 1px red';
-						t.placeholder = '不可为空';
-						return;
-					}
-					break;
-				case 'city':
-					param.city = t.value;
-					if (param.city === '') {
-						t.style = 'border: solid 1px red';
-						t.placeholder = '不可为空';
-						return;
-					}
-					break;
-				case 'place':
-					param.place = t.value;
-					if (param.place === '') {
-						t.style = 'border: solid 1px red';
-						t.placeholder = '不可为空';
-						return;
-					}
-					break;
-				default:
-					break;
-			}
-			if (t.getAttribute('id')) {
-				param.id = t.getAttribute('id');
-			}
-		});
-
-		return param;
-	}
-
-	handleClick = (e) => {
-
-		let url = types.CART_ADDRESS_ADD_MAIN_POST;
-
-		for (const k in this.handleOnChange()) {
-			if (this.handleOnChange()[k] === '') {
-				return;
-			}
-		}
-
-		let params = {
-			param: this.handleOnChange(),
-			ajaxType: 'POST',
-			onSuccess: (res) => {
-				Toast.info(res.msg, 1);
-				/**
-				 * 添加完新地址，重新调查询接口
-				 * 会避免重新刷新页面那种闪现
-				 */
-				url = types.CART_ADDRESS_MAIN_GET;
-				params = {
-					ajaxType: 'GET',
-				};
-				this.props.actions.request(url, params, {});
-			},
-			onError: (res) => {
-				Toast.info(res.msg, 1);
-			}
-		};
-
-		this.props.actions.request(url, params, {});
-
-		this.handleClickHide();
-	}
-
-	handleBlur = e => {
-		if (e.target.value === '') {
-			e.target.style = 'border: solid 1px red';
-			e.target.placeholder = '不可为空';
-		} else {
-			e.target.style = '';
-			e.target.placeholder = '';
-		}
-	}
-
-	handleChange = () => {
-	}
 	handleSubmit = () => {
 		this.props.form.validateFields((errors, value) => {
 			if (errors) {
@@ -200,23 +99,23 @@ class PopupDom extends Component {
 			list
 		} = this.state;
 		if (!show) return null;
-		return ( 
-			<div> 
+		return (
+			<div>
 				<div className="g-bg-fixed" onClick={onClick}></div>
-				<div className = "g-fixed" >
-					<div className="g-flex g-jc-sb g-pd g-black"> 
+				<div className="g-fixed" >
+					<div className="g-flex g-jc-sb g-pd g-black">
 						<div className="g-col g-tc">
 							{
 								this.props.title || 'title'
-							} 
+							}
 						</div>
-						<i 
+						<i
 							className="iconfont icon-close"
-							onClick = {onClick}>  
-						</i> 
-					</div> 
+							onClick={onClick}>
+						</i>
+					</div>
 					{
-						list.map((t, i) => { 
+						list.map((t, i) => {
 							return (
 								<Input
 									{...getFieldProps(t.type, {
@@ -239,17 +138,17 @@ class PopupDom extends Component {
 						})
 					}
 					<div className="g-flex-cc">
-						<div 
+						<div
 							style={btnStyle}
 							className="g-flex-cc"
-							onClick = {
+							onClick={
 								this.handleSubmit
 							}
 						>
-						提交 
-						</div> 
+							提交
+						</div>
 					</div>
-				</div> 
+				</div>
 			</div>
 		);
 	}
