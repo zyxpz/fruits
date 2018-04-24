@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { Radio, Toast } from 'antd-mobile';
+import classnames from 'classnames';
 import * as types from '../../../constants/actions/cart';
 import AddRevise from './AddRevise';
 
-
+const btnStyle = {
+	width: `60%`,
+	height: 70,
+	border: `solid 1px #ececec`,
+	borderRadius: `35px`,
+	background: `#56c16d`,
+	color: `#fff`,
+	margin: `50px auto`
+};
 class List extends Component {
 	constructor(props) {
 		super(props);
@@ -81,36 +90,46 @@ class List extends Component {
 		} = this.props;
 
 		return (
-			<div className="g-flex">
+			<div>
 				<ul>
 					{
 						list && list.map((t, i) => (
 							<li
 								key={i}
+								className="g-flex g-ai-c g-pd g-m-b-20 g-bg-white"
 							>
-								<Radio
-									className="my-radio"
-									checked={t.checked}
-									onChange={this.handleOnChange}
+								<i 
+									className={classnames("iconfont icon-select g-fs-40 g-m-r", { "g-green": t.checked })}
+									style={{ width: 60 }}
+									onClick={this.handleOnChange}
 									id={t.id}
-								>
-									<span>{t.name}</span>
-									<span>{t.phone}</span>
-									<span>{t.place}</span>
-									<span>{t.city}</span>
-									<button id={t.id} onClick={this.handleRemove}>删除</button>
-									&nbsp;&nbsp;&nbsp;
-									<button id={t.id} onClick={this.handleRevise}>修改地址</button>
-								</Radio>
+								/>
+								<div className="g-col g-flex g-ai-c">
+									<div className="g-col">
+										<p className="g-pd-b g-gray">收货人：{t.name}&nbsp;&nbsp; <span className="g-green">{t.phone}</span></p>
+										<div className="g-gray">
+											<span>地址：浙江省绍兴市上虞区{t.place}</span>
+										</div>
+									</div>
+									<div>
+										<i className="iconfont icon-delete" id={t.id} onClick={this.handleRemove} />
+										<span className="g-pd-lr">|</span>
+										<i className="iconfont icon-edit" id={t.id} onClick={this.handleRevise} />
+									</div>
+								</div>
 							</li>
 						))
 					}
 				</ul>
-				<button
-					onClick={this.handleCommitBtn}
-				>
-					确定
-				</button>
+				<div className="g-flex-cc">
+					<div
+						style={btnStyle}
+						className="g-flex-cc"
+						onClick={this.handleCommitBtn}
+					>
+						确定
+					</div>
+				</div>
 			</div>
 		);
 	}
