@@ -47,7 +47,6 @@ class Item extends Component {
 	}
 	handleClick = (event) => {
 		const { id } = this.props.itemData; 
-		console.log(id,88);
 		this.props.actions.selectChange("single", id);
 	}
 	render() {
