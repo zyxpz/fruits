@@ -1,97 +1,128 @@
-import React, { Component } from 'react';
-import { Toast } from 'antd-mobile';
+import React, {
+	Component
+} from 'react';
+import {
+	Toast
+} from 'antd-mobile';
 import * as types from '../../../constants/actions/cart';
-
-let id = 0;
-let param = {
-	id: (id += 1).toString()
-};
 
 class PopupDom extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			btn: true,
-			list: [
-				{
-					name: '姓名',
-					type: 'name'
-				},
-				{
-					name: '电话',
-					type: 'name'
-				},
-				{
-					name: '城市',
-					type: 'name'
-				},
-				{
-					name: '详细地址',
-					type: 'name'
-				}
+			list: [{
+				name: '姓名',
+				type: 'name'
+			},
+			{
+				name: '电话',
+				type: 'phone'
+			},
+			{
+				name: '城市',
+				type: 'city'
+			},
+			{
+				name: '详细地址',
+				type: 'place'
+			}
 			]
 		};
 
 		this.handleClickHide = this.props.handleClickHide; // 关闭弹层
 	}
 
-  handleOnChange = e => {
-  	console.log(e.target.value);
-  	switch (e.target.getAttribute('name')) {
-  		case 'name':
-  			param.name = e.target.value;
-  			break;
-  		case 'phone':
-  			param.phone = e.target.value;
-  			break;
-  		case 'city':
-  			param.city = '浙江省绍兴市上虞区';
-  			break;
-  		case 'place':
-  			param.place = e.target.value;
-  			break;
-  		default:
-  			break;
-  	}
-		
-  	if (Object.keys(param).length >= 5) {
-  		this.setState({
-  			param,
-  			btn: false
-  		});
-  	}
+	handleOnChange = () => {
+		const ipts = document.querySelectorAll('.J-add-revise-ipt');
+		let param = {};
+		let arr = [];
+		for (let i = 0, len = ipts.length; i < len; i++) {
+			const ele = ipts[i];
+			arr.push(ele);
+		}
 
-  	
-  }
+		arr.map(t => {
 
-  handleClick = (e) => {
+			switch (t.getAttribute('name')) {
+				case 'name':
+					param.name = t.value;
+					if (param.name === '') {
+						t.style = 'border: solid 1px red';
+						t.placeholder = '不可为空';
+						return;
+					}
+					break;
+				case 'phone':
+					param.phone = t.value;
+					if (param.phone === '') {
+						t.style = 'border: solid 1px red';
+						t.placeholder = '不可为空';
+						return;
+					}
+					break;
+				case 'city':
+					param.city = t.value;
+					if (param.city === '') {
+						t.style = 'border: solid 1px red';
+						t.placeholder = '不可为空';
+						return;
+					}
+					break;
+				case 'place':
+					param.place = t.value;
+					if (param.place === '') {
+						t.style = 'border: solid 1px red';
+						t.placeholder = '不可为空';
+						return;
+					}
+					break;
+				default:
+					break;
+			}
+			if (t.getAttribute('id')) {
+				param.id = t.getAttribute('id');
+			}
+		});
 
-  	const {
-  		param
-  	} = this.state;
-		
-  	if (param === undefined && Object.keys(param).length < 5) {
-  		return;
-  	}
+		return param;
+	}
 
-  	let url = types.CART_ADDRESS_ADD_MAIN_GET;
+	handleClick = (e) => {
 
-  	let params = {
-  		param: param,
-  		ajaxType: 'POST',
-  		onSuccess: (res) => {
-  			Toast.info(res.msg, 1);
-  		},
-  		onError: (res) => {
-  			Toast.info(res.msg, 1);
-  		}
-  	};
+		let url = types.CART_ADDRESS_ADD_MAIN_POST;
 
-  	this.props.actions.request(url, params, {});
+		for (const k in this.handleOnChange()) {
+			if (this.handleOnChange()[k] === '') {
+				return;
+			}
+		}
 
-  	this.handleClickHide();
-  }
-	
+		let params = {
+			param: this.handleOnChange(),
+			ajaxType: 'POST',
+			onSuccess: (res) => {
+				Toast.info(res.msg, 1);
+				/**
+				 * 添加完新地址，重新调查询接口
+				 * 会避免重新刷新页面那种闪现
+				 */
+				url = types.CART_ADDRESS_MAIN_GET;
+				params = {
+					ajaxType: 'GET',
+				};
+				this.props.actions.request(url, params, {});
+			},
+			onError: (res) => {
+				Toast.info(res.msg, 1);
+			}
+		};
+
+		this.props.actions.request(url, params, {});
+
+		this.handleClickHide();
+	}
+
 	handleBlur = e => {
 		if (e.target.value === '') {
 			e.target.style = 'border: solid 1px red';
@@ -103,41 +134,55 @@ class PopupDom extends Component {
 	}
 
 	render() {
-  	const {
+		const {
 			show,
-  	} = this.props;
-		
-  	const {
-			btn,
+			changeData,
+		} = this.props;
+
+		const {
 			list
 		} = this.state;
-		
-  	return (
-  		<div>
-  			{
-  				show ? <div className="g-fixed">
-  					<div>
-  						{this.props.title || 'title'}
-  						<span onClick={() => { this.handleClickHide(); }}>X</span>
-  					</div>
-						
-  					{/* <p>姓名: <input type="text" name="name" onChange={this.handleOnChange} onBlur={this.handleBlur} /></p>
-  					<p>电话: <input type="phone" name="phone" onChange={this.handleOnChange} onBlur={this.handleBlur} /></p>
-  					<p>城市: <input type="text" name="city" onChange={this.handleOnChange} onBlur={this.handleBlur}  /></p>
-						<p>详细地址: <input type="text" name="place" onChange={this.handleOnChange} onBlur={this.handleBlur} /></p> */}
-						<ul>
-							{
-								list.map((t, i) => (
-									<li>{t.name}:<input type="text" name={t.type} onChange={this.handleOnChange} onBlur={this.handleBlur} /></li>
-								))
+
+		return ( 
+			<div> {
+				show ? <div className = "g-fixed" >
+					<div> 
+						{
+							this.props.title || 'title'
+						} 
+						<span onClick = {
+							() => {
+								this.handleClickHide();
 							}
-							
-						</ul>
-  					<button onClick={this.handleClick} disabled={btn}>提交</button>
-  				</div> : ''
-  			}
-  		</div>
-  	);
+						}> X </span> 
+					</div> 
+					<ul> {
+						list.map((t, i) => ( <li> {
+							t.name
+						}: < input type = "text"
+							name = {
+								t.type
+							}
+							onBlur = {
+								this.handleBlur
+							}
+							value = {
+								changeData && changeData[t.type]
+							}
+							id = {
+								changeData && changeData.id
+							}
+							className = "J-add-revise-ipt" / > </li>
+						))
+					}
+					</ul> 
+					<button onClick = {
+						this.handleClick
+					} > 提交 
+					</button> 
+				</div> : ''
+			} </div>
+		);
 	}
 }
 

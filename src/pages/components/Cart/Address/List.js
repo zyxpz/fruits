@@ -7,67 +7,34 @@ import AddRevise from './AddRevise';
 class List extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			checked: 0,
-			btn: true
-		};
+		this.state = { };
 	}
-
-	componentWillReceiveProps(nextProps) {
-		if (this.props.list !== nextProps.list) {
-			const {
-				list
-			} = nextProps;
-			list && list.map((t, i) => {
-				if (t.status === '1') {
-					this.setState({
-						checked: 1,
-						id: t.id
-					});
-				}
-			});
-		}
-
-	}
-
+	
 	// 默认地址选项
 	handleOnChange = e => {
 		const {
 			id,
 		} = e.target;
-		this.setState({
-			checked: 1,
-			id,
-			btn: false
-		});
+		this.props.actions.changeInputRadio(id);
 	}
 
 	// 修改默认地址提交
 	handleCommitBtn = () => {
 		const {
 			id
-		} = this.state;
-		const {
-			list
 		} = this.props;
-		let url = types.CART_ADDRESS_DEF_PLACE_MAIN_GET;
-
+		let url = types.CART_ADDRESS_DEF_PLACE_MAIN_POST;
+		
 		let param = {
-
+			id
 		};
-		list.map(t => {
-			if (t.id === id) {
-				param = {
-					id: t.id
-				};
-			}
-		});
 
 		let params = {
 			param: param,
 			ajaxType: 'POST',
 			onSuccess: (res) => {
 				Toast.info(res.msg, 1);
+				_global.history.goBack();
 			},
 			onError: (res) => {
 				Toast.info(res.msg, 1);
@@ -81,7 +48,7 @@ class List extends Component {
 	handleRemove = e => {
 		const id = e.target.getAttribute('id');
 
-		let url = types.CART_ADDRESS_DEL_MAIN_GET;
+		let url = types.CART_ADDRESS_DEL_MAIN_POST;
 
 		let param = {
 			id,
@@ -103,26 +70,14 @@ class List extends Component {
 	// 修改地址
 	handleRevise = e => {
 		const id = e.target.getAttribute('id');
-		const {
-			list
-		} = this.props;
-		const arr = list.filter(val => val.id === id);
-		
-		this.setState({
-			reviseList: arr,
-		});
+		this.props.actions.changeAddress({ id });
 	}
 
 	render() {
-
 		const {
-			checked,
-			id,
-			btn,
-			reviseList
-		} = this.state;
-		const {
-			list
+			list,
+			actions,
+			defaultBtn
 		} = this.props;
 
 		return (
@@ -135,7 +90,7 @@ class List extends Component {
 							>
 								<Radio
 									className="my-radio"
-									checked={(checked !== 0) && (t.id === id)}
+									checked={t.checked}
 									onChange={this.handleOnChange}
 									id={t.id}
 								>
@@ -144,18 +99,17 @@ class List extends Component {
 									<span>{t.place}</span>
 									<span>{t.city}</span>
 									<button id={t.id} onClick={this.handleRemove}>删除</button>
-									<button id={t.id} onClick={this.handleRevise}>修改</button>
+									&nbsp;&nbsp;&nbsp;
+									<button id={t.id} onClick={this.handleRevise}>修改地址</button>
 								</Radio>
 							</li>
 						))
 					}
 				</ul>
 				<AddRevise
-					list={reviseList}
-					actions={this.props.actions}
+					{...this.props}
 				/>
 				<button
-					disabled={btn}
 					onClick={this.handleCommitBtn}
 				>
 					确定
