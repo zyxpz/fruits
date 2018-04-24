@@ -19,7 +19,7 @@ class Header extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: 0,
+			value: 1,
 			money: ""
 		};
 	}
@@ -28,7 +28,7 @@ class Header extends Component {
 			value,
 		});
 	};
-	handleChange = (value) => {
+	handleChange = () => {
 		let money = event.target.value;
 		this.setState({
 			money: money
@@ -59,12 +59,12 @@ class Header extends Component {
 	}
 	render() {
 		const data = [
-			{ value: 0, label: '支付宝支付' },
+			// { value: 0, label: '支付宝支付' },
 			{ value: 1, label: '微信支付' },
 		];
 		const { value, money } = this.state;
 		return (
-			<div className="v-user-balance-rechaarge g-reset g-m-b-20 g-bg-white">
+			<div className="v-user-balance-rechaarge g-reset g-m-b-20 g-bg-white g-bb">
 				<Flex style={{ padding: '0.3rem' }}>
 					<Flex.Item style={{ padding: '0.3rem 0', color: '#888', flex: 'none' }}>充值方式：</Flex.Item>
 					<Flex.Item>

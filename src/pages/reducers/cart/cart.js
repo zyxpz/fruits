@@ -60,7 +60,7 @@ const selectStrFun = (itemObj) => {
 	return str;
 };
 export default function cart(state = initialState, action = {}) {
-	let items, total_amount, select_items;
+	let items, total_amount, select_items, select_str;
 	switch (action.type) {
 		case types.CART_MAIN_GET + '_ON':
 			state = {
@@ -70,7 +70,7 @@ export default function cart(state = initialState, action = {}) {
 		case types.CART_MAIN_GET + '_SUCCESS':
 			items = initItem(action.data.data.list);
 			let itemObj = initSelectAllFun(items.itemObj, 1);
-			let select_str = selectStrFun(itemObj);
+			select_str = selectStrFun(itemObj);
 			state = {
 				...state,
 				total: action.data.data.total,
@@ -116,10 +116,10 @@ export default function cart(state = initialState, action = {}) {
 		case types.CART_SELECT_CHANGE:
 			let select_type = action.select_type;
 			let select_id = action.select_id;
-
 			if (select_type == 'all') {
 				select_items = initSelectAllFun(state.itemObj, !state.is_all_selected);
 				total_amount = initChangeDataFun(select_items).total_amount;
+				select_str = selectStrFun(select_items);
 				state = {
 					...state,
 					itemObj: initSelectAllFun(state.itemObj, !state.is_all_selected),
@@ -130,6 +130,7 @@ export default function cart(state = initialState, action = {}) {
 			} else {
 				select_items = initSelectFun(state.itemObj, select_id, state.is_all_selected);
 				total_amount = initChangeDataFun(select_items.itemObj).total_amount;
+				select_str = selectStrFun(select_items.itemObj);
 				state = {
 					...state,
 					itemObj: select_items.itemObj,

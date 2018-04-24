@@ -57,6 +57,7 @@
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.5.3",
     "open-browser-webpack-plugin": "^0.0.5",
+    "rc-form": "^2.2.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "svg-sprite-loader": "^0.3.0",

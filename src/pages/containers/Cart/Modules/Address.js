@@ -9,6 +9,8 @@ import { Toast } from 'antd-mobile';
 // 业务组件
 import Header from "../../../components/_commom/Header/Header";
 import List from "../../../components/Cart/Address/List";
+import AddRevise from "../../../components/Cart/Address/AddRevise";
+
 
 import Footer from "../../../components/_commom/Footer/Footer";
 
@@ -33,14 +35,19 @@ class Container extends Component {
 	}
 	render() {
 		return (
-			<div className="g-bg-white">
+			<div style={{ height: _global.innerHeight - 95 }}>
 				<Header
 					nickname="管理收货地址"
 				/>
-				<List
-					{...this.props.address}
-					actions={this.props.actions}
-				/>
+				<div className="g-flex g-fd-c g-jc-sb" style={{ height: _global.innerHeight - 95 - 84  }}>
+					<div>
+						<List
+							{...this.props.address}
+							actions={this.props.actions}
+						/>
+					</div>
+					<AddRevise actions={this.props.actions}/>
+				</div>
 				<Footer />
 			</div>
 		);

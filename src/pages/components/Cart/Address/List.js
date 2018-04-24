@@ -81,7 +81,7 @@ class List extends Component {
 		} = this.props;
 
 		return (
-			<div>
+			<div className="g-flex">
 				<ul>
 					{
 						list && list.map((t, i) => (
@@ -106,9 +106,6 @@ class List extends Component {
 						))
 					}
 				</ul>
-				<AddRevise
-					{...this.props}
-				/>
 				<button
 					onClick={this.handleCommitBtn}
 				>

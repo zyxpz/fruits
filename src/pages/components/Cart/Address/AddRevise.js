@@ -7,35 +7,32 @@ import PopupDom from './Popup';
 class AddAddress extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { };
+		this.state = { 
+			title: "",
+			show: !1
+		};
 	}
 
 	handleClick = () => {
-		this.props.actions.popupShowOrHide({
-			title: '新增地址',
-			show: true,
+		this.setState({
+			title: "新增地址",
+			show: !this.state.show
 		});
 	}
-
-	handleClickHide = () => {
-		this.props.actions.popupShowOrHide({
-			show: false,
-			changeData: {}
-		});
-	}
-
 	render() {
-
-  	return (
-  		<div>
-  			<button onClick={this.handleClick}>添加更多</button>
-  			<PopupDom
-  				handleClickHide={this.handleClickHide}
-					{...this.props}
-  			/>
-  		</div>
-
-  	);
+	  	return (
+	  		<div>
+	  			<div 
+	  				className="g-flex-cc g-pd g-bg-green"
+	  				onClick={this.handleClick}
+	  			>新增地址+</div>
+	  			<PopupDom
+	  				onClick={this.handleClick}
+	  				actions={this.props.actions}
+					{...this.state}
+	  			/>
+	  		</div>
+	  	);
 	}
 }
 

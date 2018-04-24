@@ -9,6 +9,13 @@ import { Toast } from 'antd-mobile';
 // 业务组件
 import Header from "../../../components/_commom/Header/Header";
 import Address from "../../../components/Cart/Settlement/Address";
+import Goods from "../../../components/Cart/Settlement/Goods";
+import Pay from "../../../components/Cart/Settlement/Pay";
+import Coupon from "../../../components/Cart/Settlement/Coupon";
+import Info from "../../../components/Cart/Settlement/Info";
+import Msg from "../../../components/Cart/Settlement/Msg";
+import Submit from "../../../components/Cart/Settlement/Submit";
+
 
 import Footer from "../../../components/_commom/Footer/Footer";
 
@@ -32,13 +39,24 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		// const { cart, actions, dispatch } = this.props;
+		const { settlement, actions } = this.props;
+		const { list = [], total = 0 } = settlement;
 		return (
-			<div className="g-bg-white">
+			<div style={{ height: _global.innerHeight - 95 }}>
 				<Header
 					nickname="结算"
 				/>
-				<Address />
+				<div className="g-flex g-fd-c g-jc-sb" style={{ height: _global.innerHeight - 95 - 84 }}>
+					<div>
+						<Address />
+						<Goods list={list}/>
+						<Pay />
+						<Coupon />
+						<Info total={total}/>
+						<Msg /> 
+					</div>
+					<Submit total={total}/>
+				</div>
 				<Footer />
 			</div>
 		);
