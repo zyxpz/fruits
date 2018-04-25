@@ -46,7 +46,10 @@ class Container extends Component {
 							actions={this.props.actions}
 						/>
 					</div>
-					<AddRevise actions={this.props.actions}/>
+					<AddRevise 
+						{...this.props.address}
+						actions={this.props.actions}
+					/>
 				</div>
 				<Footer />
 			</div>

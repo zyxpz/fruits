@@ -244,30 +244,33 @@ class Input extends Component {
 						</div>
 					}
 
-					<input
-						className={
-							classnames(
-								{ "__tc __col-10 __col-ml-1 ": !children },
-								{ "__col-7": children },
-								{ "__col-4": onSms },
-								{ "__col-9": onSearch },
-								classNameInput
-							)
-						}
-						readOnly={readonly}
-						disabled={disabled}
-						value={value}
-						maxLength={maxLength}
-						style={{ height: 40, marginTop: 20, marginBottom: 20, lineHeight: '40px', ...styleInput }}
-						type={type}
-						placeholder={placeholder}
-						onKeyUp={this.handleKeyUp}
-						onChange={this.handleChange}
-						onBlur={this.handleBlur}
-						onClick={this.handleClick}
-						onFocus={this.handleFocus}
-						ref="input"
-					/>
+					{
+						children && 
+						<input
+							className={
+								classnames(
+									{ "__tc __col-10 __col-ml-1 ": !children },
+									{ "__col-7": children },
+									{ "__col-4": onSms },
+									{ "__col-9": onSearch },
+									classNameInput
+								)
+							}
+							readOnly={readonly}
+							disabled={disabled}
+							value={value}
+							maxLength={maxLength}
+							style={{ height: 40, marginTop: 20, marginBottom: 20, lineHeight: '40px', ...styleInput }}
+							type={type}
+							placeholder={placeholder}
+							onKeyUp={this.handleKeyUp}
+							onChange={this.handleChange}
+							onBlur={this.handleBlur}
+							onClick={this.handleClick}
+							onFocus={this.handleFocus}
+							ref="input"
+						/>
+					}
 
 					{
 						(clear && value && !isBlur) &&

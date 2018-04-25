@@ -33,12 +33,11 @@ class PopupDom extends Component {
 				type: 'phone'
 			},
 			{
-				name: '城市',
-				type: 'city'
-			},
-			{
 				name: '详细地址',
 				type: 'place'
+			},
+			{
+				type: 'id'
 			}
 			]
 		};
@@ -55,27 +54,15 @@ class PopupDom extends Component {
 				}
 				return false;
 			}
+
 			let url = types.CART_ADDRESS_ADD_MAIN_POST;
-			for (const k in this.handleOnChange()) {
-				if (this.handleOnChange()[k] === '') {
-					return;
-				}
-			}
+
 			let params = {
 				param: value,
 				ajaxType: 'POST',
 				onSuccess: (res) => {
 					Toast.info(res.msg, 1);
 					this.props.onClick();
-					/**
-					 * 添加完新地址，重新调查询接口
-					 * 会避免重新刷新页面那种闪现
-					 */
-					url = types.CART_ADDRESS_MAIN_GET;
-					params = {
-						ajaxType: 'GET',
-					};
-					this.props.actions.request(url, params, {});
 				},
 				onError: (res) => {
 					Toast.info(res.msg, 1);
@@ -120,7 +107,7 @@ class PopupDom extends Component {
 								<Input
 									{...getFieldProps(t.type, {
 										validateTrigger: 'onBlur',
-										initialValue: "",
+										initialValue: changeData && changeData[t.type],
 										// rules: [{
 										// 	required: true,
 										// 	type: "validMobile",
@@ -129,9 +116,9 @@ class PopupDom extends Component {
 										// }]
 									}
 									)}
-									children={t.name}
+									children={t.name ? t.name : null}
 									styleLabel={{ color: '#888' }}
-									placeholder={`请输入您的${t.name}`}
+									placeholder={t.name ? `请输入您的${t.name}` : null}
 									maxLength={256}
 								/>
 							);

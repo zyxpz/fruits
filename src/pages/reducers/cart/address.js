@@ -1,6 +1,8 @@
 import * as types from '../../constants/actions/cart';
 import observableSymbol from 'symbol-observable';
 const initialState = {
+	show: !1,
+	reload: false
 };
 
 let id = 1;
@@ -64,17 +66,17 @@ export default function address(state = initialState, action = {}) {
 				...state,
 				list: arr,
 				id: action.id,
-				defaultBtn: false
 			};
 
 			return state;
 		case types.CART_POPUP_SHOW:
 			state = {
 				...state,
-				...action.opts
+				...action.opts,
+				changeData: []
 			};
 			return state;
-		case types.CART_ADDRESS_CHANGE: 
+		case types.CART_ADDRESS_CHANGE:
 			state.list.map(t => {
 				if (t.id === action.opts.id) {
 					data = t;
@@ -84,6 +86,12 @@ export default function address(state = initialState, action = {}) {
 				...state,
 				show: true,
 				changeData: data
+			};
+			return state;
+		case types.CART_ADDRESS_ADD_MAIN_POST + '_SUCCESS':
+			state = {
+				...state,
+				reload: true
 			};
 			return state;
 		default:
