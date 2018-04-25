@@ -18,6 +18,20 @@ class List extends Component {
 		super(props);
 		this.state = { };
 	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.reload !== nextProps.reload) {
+			/**
+			 * 添加完新地址，重新调查询接口
+			 * 会避免重新刷新页面那种闪现
+			 */
+			let url = types.CART_ADDRESS_MAIN_GET;
+			let params = {
+				ajaxType: 'GET',
+			};
+			this.props.actions.request(url, params, {});
+		}
+	}
 	
 	// 默认地址选项
 	handleOnChange = e => {

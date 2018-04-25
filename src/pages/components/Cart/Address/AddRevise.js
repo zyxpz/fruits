@@ -8,15 +8,13 @@ class AddAddress extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title: "",
-			show: !1
 		};
 	}
 
 	handleClick = () => {
-		this.setState({
+		this.props.actions.popupShowOrHide({
 			title: "新增地址",
-			show: !this.state.show
+			show: !this.props.show
 		});
 	}
 	render() {
@@ -29,7 +27,7 @@ class AddAddress extends Component {
 				<PopupDom
 					onClick={this.handleClick}
 					actions={this.props.actions}
-					{...this.state}
+					{...this.props}
 				/>
 			</div>
 		);
