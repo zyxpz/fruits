@@ -11,45 +11,45 @@ const bgStyle = {
 	display: `flex`,
 	alignItems: `center`,
 	justifyContent: `center`,
-}
+};
 const list = [
 	{
 		bg: `g-bg-pink`,
-		url: "/",
-		icon: "icon-order",
+		url: "/order/list",
+		icon: "icon-order?type=0",
 		title: "我的订单"
 	},
 	{
 		bg: `g-bg-purple`,
 		url: "/",
-		icon: "icon-order",
+		icon: "icon-wait-evaluate",
 		title: "待评价"
 	},
 	{
 		bg: `g-bg-orange`,
-		url: "/",
-		icon: "icon-order",
+		url: "/user/grade",
+		icon: "icon-grade",
 		title: "会员等级"
 	},
 	{
 		bg: `g-bg-green`,
 		url: "/",
-		icon: "icon-order",
+		icon: "icon-gift",
 		title: "我的赠品"
 	},
 	{
 		bg: `g-bg-blue`,
 		url: "/",
-		icon: "icon-order",
+		icon: "icon-privilege",
 		title: "我的特权"
 	},
 	{
 		bg: `g-bg-blue-1`,
 		url: "/",
-		icon: "icon-order",
+		icon: "icon-shichi",
 		title: "我的试吃"
 	},
-]
+];
 class Info extends Component {
 	constructor(props) {
 		super(props);
@@ -61,24 +61,24 @@ class Info extends Component {
 					{
 						list.map((item, index) => {
 							const { url, title, icon, bg } = item;  
-							return(
+							return (
 								<Link 
 									key={index}
 									className="g-tc g-pd-t g-pd-b g-b-r g-bb" 
-									style={{width: `33.33%`}}
+									style={{ width: `33.33%` }}
 									to={url}
 								>
 									<div className={bg} style={bgStyle}>
-										<i className={`iconfont g-fs-80 ${icon}`}/>
+										<i className={`iconfont g-fs-70 ${icon}`}/>
 									</div>
 									<p className="g-gray g-m-t">{title}</p>
 								</Link>
-							)
+							);
 						})
 					}
 				</div>
 			</div>
-		)
+		);
 	}
 
 }

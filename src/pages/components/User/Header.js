@@ -7,19 +7,20 @@ class Header extends Component {
 		super(props);
 	}
 	render() {
+		const { headimgurl, nickname } = this.props;
 		return (
 			<div className="v-user-header g-reset">
-				<div className="g-flex g-fd-c g-jc-c g-ai-c g-bg-lgr-orange-1" style={{height: 320}}>
+				<div className="g-flex g-fd-c g-jc-c g-ai-c g-bg-lgr-orange-1" style={{ height: 320 }}>
 					<img
 						className="g-img-170" 
-						src="http://img5.imgtn.bdimg.com/it/u=3965098130,3727948753&fm=27&gp=0.jpg" 
+						src={headimgurl} 
 						alt=""
-						 style={{borderRadius: `100%`}}
-						/>
-					<p className="g-fs-40 g-pd">name</p>
+						style={{ borderRadius: `100%` }}
+					/>
+					<p className="g-fs-40 g-pd">{nickname}</p>
 				</div>
 			</div>
-		)
+		);
 	}
 
 }

@@ -64,10 +64,6 @@ const config = {
           // 制定src文件夹使用
           path.resolve(__dirname, 'src'),
         ],
-        // .babelrc 里规范
-        // query: {
-        //     presets: ['es2015', 'react', "stage-2"]
-        // }
       },
       { //css
         test: /\.css$/,
@@ -91,35 +87,52 @@ const config = {
         })
       },
       {
-				test: /\.(png|jpg|gif|eot|ttf|woff|woff2|svg)$/,
-				loader: 'url-loader',
-				options: {
-					limit: 10000
-				}
-			},
+        test: /\.(png|jpg|gif|eot|ttf|woff|woff2|svg)$/,
+        loader: 'svg-sprite-loader',
+        options: {
+          limit: 10000
+        }
+      },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
+    new ExtractTextPlugin({
+      filename: "styles.css",
+      disable: false,
+      allChunks: true
+    })
+  ]
+};
+
+if (process.env.NODE_ENV === 'production') {
+  // 生成环境 代码压缩
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  })
+);
+} else {
+  config.plugins.push(
+    new webpack.EvalSourceMapDevToolPlugin({
+      filename: 'bundle.js.map',
+    }),
     new webpack.HotModuleReplacementPlugin(),
     // 启动项目自启页面
     new OpenBrowserPlugin({
       url: 'http://localhost:8181/'
-    }),
-    new ExtractTextPlugin('[name].css')
-    
-  ]
-};
+    })
+  )
 
-if (process.env.NODE_ENV === 'prod') {
-  // 生成环境 代码压缩
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  }));
 }
 
 config.externals = {

@@ -1,28 +1,20 @@
-import * as types from '../../constants/actions/home';
+import * as types from '../../constants/actions/user';
 const initialState = {
-    count:0
 };
-export default function user (state = initialState, action={}) {
-    switch(action.type) {
-        case types.HOME_COUNT_ADD + '_ON':
-            state = {
-                ...state,
-                count: state.count
-            }
-            return state;
-        case types.HOME_COUNT_ADD + '_SUCCESS':
-            state = {
-                ...state,
-                count:state.count + 1
-            }
-            return state;
-        case types.HOME_COUNT_REDUCE:
-            state = {
-                ...state,
-                count: state.count - 1
-            }
-            return state;
-        default:
-        return state;
-    }
+export default function user (state = initialState, action = {}) {
+	switch (action.type) {
+		case types.USER_MAIN_GET + '_ON':
+			state = {
+				...state,
+			};
+			return state;
+		case types.USER_MAIN_GET + '_SUCCESS':
+			state = {
+				...state,
+				...action.data.data
+			};
+			return state;
+		default:
+			return state;
+	}
 }

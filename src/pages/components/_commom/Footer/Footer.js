@@ -1,6 +1,7 @@
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import classnames from 'classnames';
 const list = [
 	{
 		name: "首页",
@@ -10,7 +11,7 @@ const list = [
 	{
 		name: "商品",
 		icon: "icon-categary",
-		route: "/category",
+		route: "/goods/category",
 	},
 	{
 		name: "购物车",
@@ -25,10 +26,12 @@ const list = [
 ];
 class Footer extends Component { // 不用Pure
 	render() {
+		const { pathname } = this.props;
+		const is_active = pathname ? pathname.split('/')[1] : "";
 		return (
 			<div>
 				<div style={{ height: 95 }} />
-				<footer 
+				<footer
 					className="g-fixed-content g-flex g-reset g-tc g-lh-44 g-bt"
 				>
 					{
@@ -40,11 +43,17 @@ class Footer extends Component { // 不用Pure
 									to={route}
 									onClick={onClick}
 									activeClassName={`g-orange`}
-									className="g-flex g-fd-c g-col"
+									className={
+										classnames(
+											"g-flex g-fd-c g-col",
+											{
+												"g-orange": (is_active == "user" && route == "/user") || (is_active == "goods" && route == "/goods/category")
+											}
+										)}
 								>
-									<i className={`iconfont ${icon} g-fs-36`} style={{ paddingTop: 5 }}/>
+									<i className={`iconfont ${icon} g-fs-36`} style={{ paddingTop: 5 }} />
 									<div className="g-fs-22">{name}</div>
-								</Link> 	
+								</Link>
 							);
 						})
 					}

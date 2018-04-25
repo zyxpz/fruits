@@ -77,3 +77,6 @@ _global.txtConfig = {
 };
 // 分享次数
 _global.shareCount = 0;
+
+
+ 
