@@ -24,8 +24,16 @@ class Container extends Component {
 		super(props);
 	}
 	componentDidMount() {
+		const { settlement, actions, location } = this.props;
+		const { query, state } = location;
+		const { address_id, coupon_id } = state;
+		const { id } = query;
 		let url = types.CART_SETTLEMENT_MAIN_GET;
-		let param = {};
+		let param = {
+			goods_id: id,
+			address_id,
+			coupon_id
+		};
 		let params = {
 			param: param,
 			ajaxType: 'GET',
@@ -39,7 +47,8 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		const { settlement, actions } = this.props;
+		const { settlement, actions, location, location: { query, state } } = this.props;
+		const { id } = query;
 		const { list = [], total = 0 } = settlement;
 		return (
 			<div style={{ height: _global.innerHeight - 95 }}>
@@ -48,10 +57,10 @@ class Container extends Component {
 				/>
 				<div className="g-flex g-fd-c g-jc-sb" style={{ height: _global.innerHeight - 95 - 84 }}>
 					<div>
-						<Address />
+						<Address id={id}/>
 						<Goods list={list}/>
 						<Pay />
-						<Coupon />
+						<Coupon total={total}/>
 						<Info total={total}/>
 						<Msg /> 
 					</div>

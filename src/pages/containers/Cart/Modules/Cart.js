@@ -44,7 +44,6 @@ class Container extends Component {
 			is_all_selected,
 			select_str
 		} = cart;
-		console.log(cart, 88);
 		return (
 			<div className="g-bg-white">
 				<div style={{ height: _global.innerHeight - 95 }} className="g-flex g-fd-c g-jc-sb">
@@ -59,6 +58,7 @@ class Container extends Component {
 						actions={actions} 
 						is_all_selected={is_all_selected}
 						select_str={select_str}
+						itemArr={itemArr}
 					/>
 				</div>
 				<Footer />

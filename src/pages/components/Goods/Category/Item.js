@@ -56,7 +56,7 @@ class Item extends Component {
 					<div className="g-flex g-jc-sb g-fw-w">
 						<div>已售: <span className="g-green">{month_sale}</span> 份</div>
 						<Stepper 
-							max={stock}
+							max={Number(stock)}
 							value={Number(goods_count)}
 							onChange={this.handleChange}
 						/>

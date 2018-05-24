@@ -6,8 +6,9 @@ class Address extends Component {
 	}
 
 	handleClick = (e) => {
+		const { id } = this.props;
 		_global.history.push(
-			'/cart/settlement/address'
+			'/cart/settlement/address?id=' + id
 		);
 	}
 

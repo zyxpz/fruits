@@ -104,7 +104,7 @@ class Stepper extends Component {
 
 		Modal.prompt(modalTitle, '', [
 			{ text: '取消' },
-			{ text: '确认', onPress: (value) => { if (onShouldChange('input', value)) { this.handleSure(value); } } }
+			{ text: '确认', onPress: (value) => { if (onShouldChange('input', value)) { this.handleSure(Number(value)); } } }
 		], ['tel']);
 	}
 
@@ -113,9 +113,10 @@ class Stepper extends Component {
 	 * @param value
 	 */
 	handleSure(value) {
+		console.log(value, 77);
 		const { changeTimes, max, min, onChange, maxTip } = this.props;
 		const num = parseInt(value);
-
+		console.log(max, value, value>max, 888);
 		if (isNaN(num)) {
 			Toast.info('请输入数字');
 			return;

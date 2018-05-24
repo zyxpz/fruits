@@ -9,6 +9,9 @@ const api = {
 	'CART_ADDRESS_MAIN_GET': '/api/order/address.json',
 	'CART_ADDRESS_DEL_MAIN_POST': '/api/order/del-place.json',
 	'CART_ADDRESS_ADD_MAIN_POST': '/api/order/add-place.json',
-	'CART_ADDRESS_DEF_PLACE_MAIN_POST': '/api/order/default-place.json'
+	'CART_ADDRESS_DEF_PLACE_MAIN_POST': '/api/order/default-place.json',
+	'CART_COUPON_MAIN_GET': '/api/user/register.json',
+
+	
 };
 export default api;
