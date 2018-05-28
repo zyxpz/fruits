@@ -15,8 +15,8 @@ const localIp = (() => {
       }
     }
   }
-  // return ips[0] || 'localhost';
-  return 'localhost';
+  return ips[0] || 'localhost';
+  // return 'localhost';
 })();
 
 const config = {
