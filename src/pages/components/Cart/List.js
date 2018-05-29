@@ -10,20 +10,23 @@ class List extends Component {
 	}
 	render() {
 		const { itemArr, itemObj, actions } = this.props;
-		console.log(itemArr, itemObj);
 		return (
 			<div className="v-cart-item g-reset" style={{ height: _global.innerHeight - 95 - 80, overflow: `auto` }}>
 				{
-					itemArr.map((item, index) => {
-						return (
-							<Item 
-								key={index}
-								itemArr={itemArr}
-								itemData={itemObj[item] || {}}
-								actions={actions}
-							/>
-						);
-					})
+					itemArr.length > 0 
+						?
+						itemArr.map((item, index) => {
+							return (
+								<Item 
+									key={index}
+									itemArr={itemArr}
+									itemData={itemObj[item] || {}}
+									actions={actions}
+								/>
+							);
+						})
+						:
+						<div>购物车空空如也，去采购！</div>
 				}
 			</div>
 		);

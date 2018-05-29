@@ -30,30 +30,37 @@ class Item extends Component {
 		const {
 			total,
 			is_all_selected,
-			select_str
+			select_str,
+			itemArr
 		} = this.props;
 		return (
 			<div className="v-cart-footer g-reset g-bb g-b-t">
-				<div className="g-flex g-jc-sb g-ai-c g-fs-30" style={{ height: 80 }}>
-					<div 
-						className="g-pd-l" 
-						data-type="all"
-						onClick={this.handleClick}
-					>
-						<i 
-							className={classnames("iconfont icon-select g-fs-40", { "g-green": is_all_selected })} 
-							style={{ width: 40 }}
-						/> 
-						<span className="g-m-l">全选</span>
-					</div>
-					<div className="g-flex g-ai-c" style={{ height: `100%` }}>
-						<div className="g-col g-pd-lr">合计：<span className="g-pink">￥{total}</span></div>
-						<div 
-							onClick={this.handleSubmit}
-							className="g-bg-orange g-flex g-ai-c g-jc-c g-white" style={btnStyle}
-						>结算</div>
-					</div>
-				</div>
+				{
+					itemArr.length > 0 
+						?
+						<div className="g-flex g-jc-sb g-ai-c g-fs-30" style={{ height: 80 }}>
+							<div 
+								className="g-pd-l" 
+								data-type="all"
+								onClick={this.handleClick}
+							>
+								<i 
+									className={classnames("iconfont icon-select g-fs-40", { "g-green": is_all_selected })} 
+									style={{ width: 40 }}
+								/> 
+								<span className="g-m-l">全选</span>
+							</div>
+							<div className="g-flex g-ai-c" style={{ height: `100%` }}>
+								<div className="g-col g-pd-lr">合计：<span className="g-pink">￥{total}</span></div>
+								<div 
+									onClick={this.handleSubmit}
+									className="g-bg-orange g-flex g-ai-c g-jc-c g-white" style={btnStyle}
+								>结算</div>
+							</div>
+						</div>
+						:
+						null
+				}
 			</div>
 		);
 	}

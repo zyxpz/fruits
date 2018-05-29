@@ -7,11 +7,8 @@ import { connect } from 'react-redux';
 import * as types from '../../../constants/actions/cart';
 import { Toast } from 'antd-mobile';
 // 业务组件
-import Header from "../../../components/_commom/Header/Header";
-import List from "../../../components/Cart/Address/List";
-import AddRevise from "../../../components/Cart/Address/AddRevise";
-
-
+import Header from '../../../components/Cart/Coupon/Header';
+import List from '../../../components/Cart/Coupon/List';
 import Footer from "../../../components/_commom/Footer/Footer";
 
 class Container extends Component {
@@ -19,11 +16,15 @@ class Container extends Component {
 		super(props);
 	}
 	componentDidMount() {
-		let url = types.CART_ADDRESS_MAIN_GET;
-		let param = {};
+		const { location: { query } } = this.props;
+		const { total } = query;
+		let url = types.CART_COUPON_MAIN_GET;
+		let param = {
+			total
+		};
 		let params = {
 			param: param,
-			ajaxType: 'GET',
+			ajaxType: 'POST',
 			onSuccess: (res) => {
 				Toast.info(res.msg, 1);
 			},
@@ -34,26 +35,13 @@ class Container extends Component {
 		this.props.actions.request(url, params, {});
 	}
 	render() {
-		const { location: { query } } = this.props;
-		const { id } = query;
+		const { cartCoupon, actions, location: { query } } = this.props;
+		const { total } = query;
+		const { list = [] } = cartCoupon;
 		return (
 			<div style={{ height: _global.innerHeight - 95 }}>
-				<Header
-					nickname="管理收货地址"
-				/>
-				<div className="g-flex g-fd-c g-jc-sb" style={{ height: _global.innerHeight - 95 - 84  }}>
-					<div>
-						<List
-							{...this.props.address}
-							actions={this.props.actions}
-							goods_id={id}
-						/>
-					</div>
-					<AddRevise 
-						{...this.props.address}
-						actions={this.props.actions}
-					/>
-				</div>
+				<Header />
+				<List list={list}/>
 				<Footer />
 			</div>
 		);
@@ -61,7 +49,7 @@ class Container extends Component {
 }
 function mapStateToProps(state) {
 	return {
-		address: state.address
+		cartCoupon: state.cartCoupon
 	};
 }
 

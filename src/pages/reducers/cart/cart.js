@@ -23,9 +23,10 @@ const initDeleteFun = (itemObj, itemArr, id) => {
 	});
 	for (let i in itemObj) {
 		if (i == id) {
-			itemObj.delete.i;
+			delete itemObj[i];
 		}
 	}
+	console.log(itemArr, itemObj, 888);
 	return { itemArr, itemObj };
 };
 const initSelectAllFun = (itemObj, is_selected_all) => {
@@ -105,11 +106,15 @@ export default function cart(state = initialState, action = {}) {
 		case types.CART_COUNT_DELETE_POST + '_SUCCESS':
 			const del_id = action.param.goods_id;
 			let data = initDeleteFun(state.itemObj, state.itemArr, del_id);
+			total_amount = initChangeDataFun({
+				...data.itemObj,
+			}).total_amount;
 			state = {
 				...state,
 				itemObj: {
-					...state.itemObj,
+					...data.itemObj,
 				},
+				itemArr: [...data.itemArr],
 				total: total_amount
 			};
 			return state;

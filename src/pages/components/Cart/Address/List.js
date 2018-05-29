@@ -44,20 +44,22 @@ class List extends Component {
 	// 修改默认地址提交
 	handleCommitBtn = () => {
 		const {
-			id
+			id,
+			goods_id
 		} = this.props;
+		console.log(this.props, 88);
 		let url = types.CART_ADDRESS_DEF_PLACE_MAIN_POST;
 		
 		let param = {
 			id
 		};
-
 		let params = {
 			param: param,
 			ajaxType: 'POST',
 			onSuccess: (res) => {
 				Toast.info(res.msg, 1);
-				_global.history.goBack();
+				_global.history.push( { pathname: `/cart/settlement`, search: `?id=${goods_id}`, state: { address_id: id } });
+				// _global.history.goBack();
 			},
 			onError: (res) => {
 				Toast.info(res.msg, 1);

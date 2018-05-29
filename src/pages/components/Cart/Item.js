@@ -30,14 +30,15 @@ class Item extends Component {
 	}
 	handleDelete = () => {
 		const { id } = this.props.itemData; 
-		let url = types.CART_COUNT_CHANGE_POST;
+		let url = types.CART_COUNT_DELETE_POST;
 		let param = {
 			goods_id: id,
 		};
 		let params = {
 			param: param,
-			ajaxType: 'GET',
+			ajaxType: 'POST',
 			onSuccess: (res) => {
+				Toast.info(res.msg, 1);
 			},
 			onError: (res) => {
 				Toast.info(res.msg, 1);
@@ -81,7 +82,11 @@ class Item extends Component {
 						<div className="g-lh-44 g-pd-l g-tl g-col">
 							<div className="g-flex">
 								<div className="g-black g-fs-30 g-twoline g-col">{goods_name}</div>
-								<div className="g-orange" style={{ width: 60 }}>删除</div>
+								<div 
+									className="g-orange" 
+									style={{ width: 60 }}
+									onClick={this.handleDelete}
+								>删除</div>
 							</div>
 							<div className="g-gray g-fs-24">{specification}</div>
 							<div className="g-flex g-jc-sb">

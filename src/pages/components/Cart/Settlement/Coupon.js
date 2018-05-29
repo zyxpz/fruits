@@ -5,12 +5,13 @@ class Coupon extends Component {
 		super(props);
 	}
 	render() {
+		const { total } = this.props;
 		return (
 			<div
 				className="g-m-b-20 g-bg-white g-pd"
 			>
 				<Link 
-					to="/user/coupon"
+					to={`/cart/coupon?total=${total}`}
 					className="g-flex g-jc-sb g-black"
 				>
 					<p>优惠券</p>

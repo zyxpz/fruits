@@ -15,8 +15,8 @@ const localIp = (() => {
       }
     }
   }
-  // return ips[0] || 'localhost';
-  return 'localhost';
+  return ips[0] || 'localhost';
+  // return 'localhost';
 })();
 
 const config = {
@@ -27,7 +27,7 @@ const config = {
   },
   //设置开发者工具的端口号,不设置则默认为8080端口
   devServer: {
-    host: localIp,
+    host: process.env.NODE_ENV === 'dev' ? 'localhost' : localIp,
     contentBase: "/",
     port: '8181',
     inline: true,
@@ -42,10 +42,10 @@ const config = {
     proxy: {
       "/api": {
         target: "http://api.sunlightfruit.com",
+        changeOrigin: true,
         pathRewrite: {
-          "^/api": ""
-        },
-        changeOrigin: true
+          '^/api': ''
+        }
       }
     },
   },
@@ -57,42 +57,42 @@ const config = {
   },
   module: {
     loaders: [{
-        test: /\.js?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        include: [
-          // 制定src文件夹使用
-          path.resolve(__dirname, 'src'),
-        ],
-      },
-      { //css
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader']
-        })
-      },
-      { //scss
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      },
-      { //less
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'less-loader']
-        })
-      },
-      {
-        test: /\.(png|jpg|gif|eot|ttf|woff|woff2|svg)$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          limit: 10000
-        }
-      },
+      test: /\.js?$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      include: [
+        // 制定src文件夹使用
+        path.resolve(__dirname, 'src'),
+      ],
+    },
+    { //css
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader']
+      })
+    },
+    { //scss
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'sass-loader']
+      })
+    },
+    { //less
+      test: /\.less$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'less-loader']
+      })
+    },
+    {
+      test: /\.(png|jpg|gif|eot|ttf|woff|woff2|svg)$/,
+      loader: 'svg-sprite-loader',
+      options: {
+        limit: 10000
+      }
+    },
     ]
   },
   plugins: [
@@ -116,11 +116,11 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  })
-);
+      compress: {
+        warnings: false
+      }
+    })
+  );
 } else {
   config.plugins.push(
     new webpack.EvalSourceMapDevToolPlugin({
