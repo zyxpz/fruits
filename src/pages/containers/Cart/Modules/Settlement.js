@@ -25,8 +25,9 @@ class Container extends Component {
 	}
 	componentDidMount() {
 		const { settlement, actions, location } = this.props;
-		const { query, state } = location;
-		const { address_id, coupon_id } = state;
+		const { query, state = {} } = location;
+		console.log(location, state,88888);
+		const { address_id = "", coupon_id = "" } = state;
 		const { id } = query;
 		let url = types.CART_SETTLEMENT_MAIN_GET;
 		let param = {
@@ -60,7 +61,7 @@ class Container extends Component {
 						<Address id={id}/>
 						<Goods list={list}/>
 						<Pay />
-						<Coupon total={total}/>
+						<Coupon total={total} id={id} />
 						<Info total={total}/>
 						<Msg /> 
 					</div>

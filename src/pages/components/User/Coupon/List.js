@@ -7,8 +7,12 @@ class List extends Component {
 	constructor(props) {
 		super(props);
 	}
+	handleClick = () => {
+		_global.history.push( { pathname: `/cart/settlement`, search: `?id=${goods_id}`, state: { address_id: id } });
+
+	}
 	render() {
-		const { list } = this.props;
+		const { list, total } = this.props;
 		return (
 			<div className="v-user-coupon-list g-reset">
 				{
@@ -18,6 +22,7 @@ class List extends Component {
 							<div 
 								key={index}
 								className="g-pd"
+								onClick={total ? this.handleClick : null}
 							>
 								<div 
 									className="g-flex g-bg-white" 

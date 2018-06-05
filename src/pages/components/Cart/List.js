@@ -26,7 +26,9 @@ class List extends Component {
 							);
 						})
 						:
-						<div>购物车空空如也，去采购！</div>
+						<div className="g-flex g-ai-c g-jc-c" style={{height: '100%'}}>
+							<div>购物车空空如也，去采购！</div>
+						</div>
 				}
 			</div>
 		);

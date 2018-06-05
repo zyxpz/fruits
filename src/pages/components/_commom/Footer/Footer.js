@@ -6,7 +6,7 @@ const list = [
 	{
 		name: "首页",
 		icon: "icon-home",
-		route: "/",
+		route: "/home",
 	},
 	{
 		name: "商品",
@@ -37,7 +37,27 @@ class Footer extends Component { // 不用Pure
 					{
 						list.map((item, index) => {
 							const { name, route, icon, onClick } = item;
+
 							return (
+								name == "首页"
+								?
+								<div
+									key={route}
+									to={route}
+									onClick={onClick}
+									activeClassName={`g-orange`}
+									className={
+										classnames(
+											"g-flex g-fd-c g-col",
+											{
+												"g-orange": (is_active == "user" && route == "/user") || (is_active == "goods" && route == "/goods/category")
+											}
+										)}
+								>
+									<i className={`iconfont ${icon} g-fs-36`} style={{ paddingTop: 5 }} />
+									<div className="g-fs-22">{name}</div>
+								</div>
+								:
 								<Link
 									key={route}
 									to={route}

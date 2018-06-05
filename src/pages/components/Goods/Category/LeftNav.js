@@ -23,7 +23,7 @@ class LeftNav extends Component {
 				<div className="g-flex g-fd-c">
 					{
 						itemArr.map((item, index) => {
-							const { goods_category_id, categroy_name } = itemObj[item];
+							const { goods_category_id, category_name } = itemObj[item];
 							return (
 								<div 
 									key={index}
@@ -31,7 +31,7 @@ class LeftNav extends Component {
 									data-id={goods_category_id}
 									onClick={this.handleClick}
 									style={current_id == goods_category_id ? bgStyle : null }
-								>{categroy_name}</div>
+								>{category_name}</div>
 							);
 						})
 					}

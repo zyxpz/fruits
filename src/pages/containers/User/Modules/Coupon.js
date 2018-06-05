@@ -17,11 +17,15 @@ class Container extends Component {
 		super(props);
 	}
 	componentDidMount() {
+		const { location: { query } } = this.props;
+		const { total } = query;
 		let url = types.USER_COUPON_GET;
-		let param = {};
+		let param = {
+			total
+		};
 		let params = {
 			param: param,
-			ajaxType: 'GET',
+			ajaxType: 'POST',
 			onSuccess: (res) => {
 			},
 			onError: (res) => {
@@ -32,12 +36,14 @@ class Container extends Component {
 	}
 	render() {
 		const { coupon, actions, location } = this.props;
+		const { query = {} } = location;
+		const { total } = query;
 		const { pathname } = location;
 		const { list } = coupon;
 		return (
 			<div>
 				<Header />
-				<List list={list}/>
+				<List list={list} total={total} />
 				<Footer pathname={pathname}/>
 			</div>
 		);
